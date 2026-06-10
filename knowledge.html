@@ -224,9 +224,17 @@ const categories = {
 
 const items = [
   // 系統櫃
-  { id:1, cat:'cabinet', tag:'系統櫃', name:'門片類型比較', desc:'無把手、條型把手、圓型把手三種常見門片做法，各有不同視覺效果與使用習慣。',
-    pros:['施工快速','好清潔'], cons:['彈性較低'],
-    detail: `<div class="modal-section"><div class="modal-section-title">三種常見門片做法</div><ul class="modal-list"><li><strong>無把手（反彈式／溝縫式）</strong>：視覺最簡潔，適合極簡、日式風格。反彈式需注意多年使用後彈簧可能鬆弛；溝縫式最耐用。</li><li><strong>條型把手</strong>：最常見，好施力，易清潔。可選鋁合金、黑鐵、不鏽鋼等材質。</li><li><strong>圓型把手</strong>：視覺較輕盈，帶有溫暖感，適合北歐、法式風格。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房建議使用條型把手或溝縫式，油汙不易卡在接縫；臥室衣櫃則可選無把手，視覺更清爽。</div>` },
+  { id:1, cat:'cabinet', tag:'系統櫃', name:'把手類型介紹', desc:'隱藏把手、一字外鎖、45度斜把手、單顆型，四種常見做法一次看懂。',
+    pros:['有實際照片'], cons:[],
+    link: 'kb-cabinet-handle.html',
+    svg: `<svg viewBox="0 0 120 80" width="90" height="60" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="10" width="30" height="60" rx="2" fill="#E8E0D4" stroke="#B4B2A9" stroke-width="1"/>
+      <rect x="44" y="10" width="30" height="60" rx="2" fill="#E8E0D4" stroke="#B4B2A9" stroke-width="1"/>
+      <rect x="78" y="10" width="30" height="60" rx="2" fill="#E8E0D4" stroke="#B4B2A9" stroke-width="1"/>
+      <line x1="38" y1="30" x2="38" y2="50" stroke="#8B7355" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="56" y="34" width="12" height="3" rx="1.5" fill="#8B7355"/>
+      <circle cx="93" cy="40" r="4" fill="none" stroke="#8B7355" stroke-width="2"/>
+    </svg>` },
   { id:2, cat:'cabinet', tag:'系統櫃', name:'板材選用說明', desc:'系統櫃板材分為塑合板、發泡板、木心板，各有適合的使用場合。',
     pros:['可客製尺寸'], cons:['需注意板材等級'],
     detail: `<div class="modal-section"><div class="modal-section-title">系統板材比較</div><ul class="modal-list"><li><strong>塑合板（E1/E0）</strong>：最常用，穩定性高，防潮性一般。適合一般收納櫃、衣櫃。選 E0 等級甲醛較低。</li><li><strong>發泡板</strong>：防水防潮效果最好，適合浴室、廚房下層、陽台區域。</li><li><strong>木心板</strong>：傳統木工常用，承重力較強，但甲醛問題需注意，建議選低甲醛認證板。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>潮濕區域（廚下、浴室）務必使用發泡板，乾燥區域選 E0 塑合板即可，不需要全室使用最貴的板材。</div>` },
@@ -265,10 +273,22 @@ const items = [
     detail: `<div class="modal-section"><div class="modal-section-title">溝縫重點</div><ul class="modal-list"><li><strong>縫寬選擇</strong>：仿石材磁磚建議 2–3mm 細縫，呈現整體感；手工磚、復古磚建議 5–8mm 寬縫，更有手作質感。</li><li><strong>填縫材料</strong>：一般填縫劑便宜但易髒易變色；環氧樹脂填縫（彩色填縫）耐髒、防霉，適合廚房、浴室。</li><li><strong>顏色選擇</strong>：同色系填縫→整體感強；對比色填縫→線條感強，適合有個性的設計。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房、浴室強烈建議使用環氧樹脂填縫，雖然貴一點，但不發霉、好清潔，長期下來很值得。</div>` },
 
   // 木地板
-  { id:12, cat:'floor', tag:'木地板', name:'實木 vs 海島型 vs SPC', desc:'三種木地板的核心差異，台灣氣候下的選用建議。',
-    pros:['各有適用條件'], cons:['需考量濕度環境'],
-    detail: `<div class="modal-section"><div class="modal-section-title">三種地板比較</div><ul class="modal-list"><li><strong>實木地板</strong>：100% 天然實木，腳感最好，可多次研磨翻新。缺點是台灣氣候潮濕，實木容易漲縮變形，維護成本高。</li><li><strong>海島型木地板</strong>：表層真實木皮，底層為夾板，克服實木漲縮問題，是台灣最常見的木地板選擇。腳感好，質感佳。</li><li><strong>SPC石塑地板</strong>：完全防水，適合浴室、廁所、有寵物的家庭。硬度高，踩起來較硬，視覺上接近木地板。價格最親民。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>台灣濕熱氣候推薦海島型；有寵物或小孩、需要全室防水選 SPC；純追求質感且願意保養可選實木，但需注意通風除濕。</div>` },
-  { id:13, cat:'floor', tag:'木地板', name:'直鋪 vs 架高 vs 平鋪', desc:'木地板三種施工方式的差異與適用場合。',
+  { id:12, cat:'floor', tag:'木地板', name:'木地板種類比較', desc:'超耐磨、SPC、實木、海島型、人字拼，一張表格看懂五種地板差異。',
+    pros:['表格一目了然'], cons:[],
+    link: 'kb-floor.html',
+    svg: `<svg viewBox="0 0 120 80" width="90" height="60" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="14" width="48" height="10" rx="1" fill="#EF9F27" opacity="0.7"/>
+      <rect x="8" y="25" width="48" height="10" rx="1" fill="#BA7517" opacity="0.6"/>
+      <rect x="8" y="36" width="48" height="10" rx="1" fill="#EF9F27" opacity="0.7"/>
+      <rect x="8" y="47" width="48" height="10" rx="1" fill="#BA7517" opacity="0.6"/>
+      <line x1="32" y1="14" x2="32" y2="57" stroke="#FAFAF8" stroke-width="1"/>
+      <rect x="62" y="14" width="20" height="13" rx="1" fill="#EF9F27" opacity="0.8" transform="rotate(-45 72 20)"/>
+      <rect x="80" y="14" width="20" height="13" rx="1" fill="#BA7517" opacity="0.7" transform="rotate(45 90 20)"/>
+      <rect x="62" y="40" width="20" height="13" rx="1" fill="#BA7517" opacity="0.7" transform="rotate(-45 72 46)"/>
+      <rect x="80" y="40" width="20" height="13" rx="1" fill="#EF9F27" opacity="0.8" transform="rotate(45 90 46)"/>
+      <text x="60" y="78" text-anchor="middle" font-size="8" fill="#B0AFA9" font-family="sans-serif">人字拼</text>
+    </svg>` },
+  { id:13, cat:'floor', tag:'木地板', name:'施工方式說明', desc:'直鋪、卡扣、架高三種施工方式的差異與適用場合。',
     pros:['施工方式影響費用'], cons:['架高難以局部修復'],
     detail: `<div class="modal-section"><div class="modal-section-title">施工方式說明</div><ul class="modal-list"><li><strong>直鋪（膠黏）</strong>：地板直接用膠水黏合於地面，最穩固，不會有聲音，但日後拆除困難。適合新成屋平整地面。</li><li><strong>平鋪（卡扣）</strong>：地板以卡扣方式拼接，不用膠，可局部拆換維修。高低落差超過 3mm 需先整平。</li><li><strong>架高</strong>：在地板下方架設角料，形成高低差，可做收納或榻榻米感。費用較高，適合臥室局部設計。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>一般居家推薦平鋪（卡扣），方便日後局部修繕；老屋地面不平建議先整平再施作，省得後悔。</div>` },
 
@@ -315,8 +335,11 @@ function renderItems() {
   } else {
     empty.style.display = 'none';
     grid.innerHTML = filtered.map(item => `
-      <div class="item-card" onclick="openModal(${item.id})">
-        <div class="item-img">照片區域</div>
+      <div class="item-card" onclick="${item.link ? `window.location='${item.link}'` : `openModal(${item.id})`}">
+        <div class="item-img" style="${item.link ? 'flex-direction:column;gap:8px;' : ''}">
+          ${item.svg ? item.svg : ''}
+          ${item.link ? '<span style="font-size:11px;letter-spacing:0.1em;color:var(--accent);">點擊查看 →</span>' : (item.svg ? '' : '照片區域')}
+        </div>
         <div class="item-body">
           <div class="item-tag">${item.tag}</div>
           <div class="item-name">${item.name}</div>
@@ -329,7 +352,6 @@ function renderItems() {
       </div>
     `).join('');
   }
-  // update counts
   document.getElementById('count-all').textContent = items.length;
   ['cabinet','light','wood','stone','floor','paint','style'].forEach(cat => {
     const el = document.getElementById('count-'+cat);
