@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>息所 | 序續室內裝修工程</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Serif TC', Georgia, serif; background: var(--warm-white); color: var(--charcoal); line-height: 1.8; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(250,250,248,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.12em; font-weight: 300; }
+  .nav-logo span { font-size: 10px; letter-spacing: 0.2em; color: var(--mid); display: block; }
+  .nav-back { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .nav-back:hover { color: var(--charcoal); }
+
+  .project-hero {
+    height: 85vh; margin-top: 60px;
+    background-image: url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-04.jpg');
+    background-size: cover; background-position: center;
+    position: relative; display: flex; align-items: flex-end;
+    padding: 4rem;
+  }
+  .project-hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(42,42,40,0.65) 0%, transparent 60%);
+  }
+  .hero-content { position: relative; z-index: 1; color: var(--warm-white); }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.25em; color: rgba(250,250,248,0.6); margin-bottom: 0.8rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; line-height: 1; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .hero-sub { font-size: 13px; color: rgba(250,250,248,0.7); letter-spacing: 0.1em; }
+  .logo-watermark { position: absolute; bottom: 2rem; right: 4rem; z-index: 2; }
+  .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; color: rgba(250,250,248,0.75); font-weight: 300; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+
+  .project-info { padding: 4rem; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; border-bottom: 0.5px solid var(--border); }
+  .info-list { list-style: none; }
+  .info-list li { padding: 0.8rem 0; border-bottom: 0.5px solid var(--border); font-size: 13px; display: flex; justify-content: space-between; }
+  .info-list li:last-child { border: none; }
+  .info-list li span:first-child { color: var(--mid); }
+  .project-desc { font-size: 15px; line-height: 2.1; color: var(--charcoal); }
+  .project-desc p { margin-bottom: 1rem; }
+
+  .gallery { padding: 4rem; }
+  .gallery-title { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 2rem; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .gallery-grid .full { grid-column: 1 / -1; }
+  .photo-wrap { position: relative; }
+  .gallery-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; cursor: zoom-in; transition: opacity 0.2s; display: block; }
+  .gallery-img:hover { opacity: 0.9; }
+  .gallery-img.tall { aspect-ratio: 4/3; }
+  .photo-logo { position: absolute; bottom: 12px; right: 12px; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; color: rgba(250,250,248,0.75); font-weight: 300; text-shadow: 0 1px 3px rgba(0,0,0,0.4); pointer-events: none; }
+  .img-caption { font-size: 11px; letter-spacing: 0.1em; color: var(--light); margin-top: 0.5rem; margin-bottom: 1.5rem; }
+
+  .project-nav { padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); }
+  .project-nav a { font-size: 13px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .project-nav a:hover { color: var(--charcoal); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .project-hero { padding: 2rem 1.5rem; }
+    .hero-title { font-size: 40px; }
+    .project-info { padding: 2rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; }
+    .gallery { padding: 2rem 1.5rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-grid .full { grid-column: 1; }
+    .project-nav { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>XU · INTERIOR DESIGN</span></div>
+  <a href="index.html#works" class="nav-back">← 回作品集</a>
+</nav>
+
+<div class="project-hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">彰化 · 透天 · 次臥空間</div>
+    <div class="hero-title">息所</div>
+    <div class="hero-sub">日式 · 次臥結合書桌與開放式更衣間</div>
+  </div>
+  <div class="logo-watermark">
+    <div class="logo-text">XU² 序續室內設計</div>
+  </div>
+</div>
+
+<div class="project-info">
+  <ul class="info-list">
+    <li><span>地點</span><span>彰化</span></li>
+    <li><span>類型</span><span>透天</span></li>
+    <li><span>空間</span><span>次臥室</span></li>
+    <li><span>風格</span><span>日式現代</span></li>
+    <li><span>主要材質</span><span>木皮 · 煙燻玻璃 · 木地板</span></li>
+    <li><span>圖面類型</span><span>3D 渲染</span></li>
+  </ul>
+  <div class="project-desc">
+    <p>息所，取「棲息之所」之意，一個讓人真正放下的空間。</p>
+    <p>這個次臥室的設計重點在於機能整合——書桌、開放式更衣間、收納全數融入同一空間，卻不顯雜亂。木皮天花將溫度帶入空間，煙燻玻璃更衣間讓收納成為一道風景。</p>
+    <p>墨綠色床架與淺木色形成沉穩對比，弧形天花線條柔化了空間稜角，讓整個臥室散發出一種靜謐而有質感的日式氛圍。</p>
+  </div>
+</div>
+
+<div class="gallery">
+  <div class="gallery-title">SPACE PHOTOGRAPHY</div>
+  <div class="gallery-grid">
+    <div class="photo-wrap full">
+      <img class="gallery-img" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-04.jpg" alt="臥室全景" onclick="openLightbox(this.src)">
+      <div class="photo-logo">XU² 序續室內設計</div>
+    </div>
+    <div class="img-caption full">主臥室 · 整體空間配置</div>
+
+    <div class="photo-wrap">
+      <img class="gallery-img tall" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-01.jpg" alt="更衣間與書桌" onclick="openLightbox(this.src)">
+      <div class="photo-logo">XU² 序續室內設計</div>
+    </div>
+    <div class="photo-wrap">
+      <img class="gallery-img tall" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-03.jpg" alt="開放式更衣間" onclick="openLightbox(this.src)">
+      <div class="photo-logo">XU² 序續室內設計</div>
+    </div>
+    <div class="img-caption">書桌區 · 煙燻玻璃更衣間</div>
+    <div class="img-caption">開放式更衣間 · 收納展示</div>
+
+    <div class="photo-wrap full">
+      <img class="gallery-img" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-02.jpg" alt="臥室床頭" onclick="openLightbox(this.src)">
+      <div class="photo-logo">XU² 序續室內設計</div>
+    </div>
+    <div class="img-caption full">床頭區 · 百葉窗光影 · 木格柵收納</div>
+  </div>
+</div>
+
+<div class="project-nav">
+  <a href="works-miaoli.html">← 清謐</a>
+  <a href="index.html#works">回作品集</a>
+  <a href="index.html#contact">預約諮詢 →</a>
+</div>
+
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;">
+  <img id="lightboxImg" style="max-width:90vw;max-height:90vh;object-fit:contain;" src="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>
