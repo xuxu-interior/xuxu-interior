@@ -477,36 +477,48 @@
   <div class="works-intro">
     <p class="section-sub">每個空間都是一段生活的開始。從 3D 渲染到完工實景，記錄每一個與業主共同創造的家。</p>
   </div>
-  <div class="works-grid">
-    <div class="work-item">
-      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
-      <div class="work-label">新成屋 · 台中</div>
-      <div class="work-title">主臥室設計</div>
+  <!-- 清謐 苗栗 -->
+  <div style="margin-bottom:4rem;">
+    <div style="display:flex;align-items:baseline;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--border);">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;">清謐</div>
+      <div style="font-size:12px;letter-spacing:0.1em;color:var(--accent);">苗栗 · 新成屋 · 輕奢 · 三房兩廳</div>
     </div>
-    <div class="work-item">
-      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
-      <div class="work-label">新成屋 · 台中</div>
-      <div class="work-title">客廳空間規劃</div>
-    </div>
-    <div class="work-item">
-      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
-      <div class="work-label">老屋翻新 · 台中</div>
-      <div class="work-title">全室設計施工</div>
-    </div>
-    <div class="work-item">
-      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
-      <div class="work-label">新成屋 · 彰化</div>
-      <div class="work-title">收納櫃體規劃</div>
-    </div>
-    <div class="work-item">
-      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
-      <div class="work-label">新成屋 · 台中</div>
-      <div class="work-title">兒童房設計</div>
-    </div>
-    <div class="work-item">
-      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
-      <div class="work-label">毛胚屋 · 苗栗</div>
-      <div class="work-title">全室設計施工</div>
+    <div class="works-grid">
+      <div class="work-item" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-01.jpg')">
+        <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-01.jpg');background-size:cover;background-position:center;"></div>
+        <div class="work-label">客廳 · 廚房</div>
+        <div class="work-title">開放式公共空間</div>
+      </div>
+      <div class="work-item" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-02.jpg')">
+        <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-02.jpg');background-size:cover;background-position:center;"></div>
+        <div class="work-label">廚房 · 中島</div>
+        <div class="work-title">大理石中島設計</div>
+      </div>
+      <div class="work-item" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-03.jpg')">
+        <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-03.jpg');background-size:cover;background-position:center;"></div>
+        <div class="work-label">客廳</div>
+        <div class="work-title">電視牆與收納規劃</div>
+      </div>
+      <div class="work-item" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-04.jpg')">
+        <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-04.jpg');background-size:cover;background-position:center;"></div>
+        <div class="work-label">客餐廳</div>
+        <div class="work-title">空間動線規劃</div>
+      </div>
+      <div class="work-item" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-05.jpg')">
+        <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-05.jpg');background-size:cover;background-position:center;"></div>
+        <div class="work-label">客廳</div>
+        <div class="work-title">整體空間氛圍</div>
+      </div>
+      <div class="work-item" style="cursor:default;">
+        <div class="work-img" style="display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;">
+            <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-01.jpg" onerror="this.parentElement.parentElement.parentElement.style.display='none'" style="display:none;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--accent);letter-spacing:0.1em;">更多案子<br>陸續上傳</div>
+          </div>
+        </div>
+        <div class="work-label">彰化 · 台中</div>
+        <div class="work-title">息所 · 侘寂 · 靜謐</div>
+      </div>
     </div>
   </div>
 </section>
@@ -649,5 +661,22 @@
   <span>室內裝修工程管理乙級 · 台中 · 彰化 · 苗栗</span>
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;cursor:zoom-out;" onclick="closeLightbox()">
+  <img id="lightboxImg" style="max-width:90vw;max-height:90vh;object-fit:contain;" src="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
 </body>
 </html>
