@@ -183,10 +183,16 @@
   .works-intro { max-width: 600px; margin-bottom: 4rem; }
   .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .work-item { cursor: pointer; text-decoration: none; color: inherit; }
-  .work-item:hover .work-img { opacity: 0.85; }
-  .work-body { padding: 0.8rem 0; }
+  .work-img { aspect-ratio: 4/3; background: var(--accent-light); overflow: hidden; margin-bottom: 0.8rem; }
+  .work-img-photo {
+    background-size: cover; background-position: center;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+  }
+  .work-item:hover .work-img-photo { filter: grayscale(0%); }
+  .work-body { padding: 0.2rem 0 0.8rem; }
   .work-arrow { font-size: 12px; letter-spacing: 0.1em; color: var(--accent); margin-top: 4px; }
-  .work-coming { cursor: default; opacity: 0.6; }
+  .work-coming { cursor: default; opacity: 0.5; }
 
   /* PRICING */
   #pricing { background: var(--warm-white); }
@@ -470,9 +476,7 @@
   </div>
   <div class="works-grid">
     <a href="works-miaoli.html" class="work-item" style="display:block;">
-      <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-01.jpg');background-size:cover;background-position:center;position:relative;">
-        <div style="position:absolute;inset:0;background:rgba(42,42,40,0);transition:background 0.3s;" class="work-overlay"></div>
-      </div>
+      <div class="work-img work-img-photo" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/miaoli-01.jpg');"></div>
       <div class="work-body">
         <div class="work-label">苗栗 · 新成屋 · 三房兩廳</div>
         <div class="work-title">清謐</div>
@@ -480,7 +484,7 @@
       </div>
     </a>
     <a href="works-xiso.html" class="work-item" style="display:block;">
-      <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-04.jpg');background-size:cover;background-position:center;"></div>
+      <div class="work-img work-img-photo" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/xiso-04.jpg');"></div>
       <div class="work-body">
         <div class="work-label">彰化 · 透天 · 日式</div>
         <div class="work-title">息所</div>
@@ -488,7 +492,7 @@
       </div>
     </a>
     <a href="works-wabi.html" class="work-item" style="display:block;">
-      <div class="work-img" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-02.jpg');background-size:cover;background-position:center;"></div>
+      <div class="work-img work-img-photo" style="background-image:url('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-02.jpg');"></div>
       <div class="work-body">
         <div class="work-label">彰化 · 透天頂樓 · 日式</div>
         <div class="work-title">日式茶室</div>
@@ -497,7 +501,7 @@
     </a>
     <div class="work-item work-coming">
       <div class="work-img" style="background:var(--accent-light);display:flex;align-items:center;justify-content:center;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--accent);letter-spacing:0.15em;text-align:center;">靜謐</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--accent);letter-spacing:0.15em;">靜謐</div>
       </div>
       <div class="work-body">
         <div class="work-label">台中 · 簡約灰色系</div>
