@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>系統櫃後方不油漆說明 | 序續工程做法知識庫</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif TC', Georgia, serif; background: var(--warm-white); color: var(--charcoal); line-height: 1.8; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300&display=swap');
+  a { color: inherit; text-decoration: none; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: rgba(250,250,248,0.95); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.1em; font-weight: 300; }
+  .nav-logo span { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); display: block; }
+  .nav-back { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .nav-back:hover { color: var(--charcoal); }
+
+  .breadcrumb { padding: 5rem 3rem 0; display: flex; gap: 0.5rem; align-items: center; font-size: 12px; color: var(--light); }
+  .breadcrumb a { color: var(--mid); }
+
+  .page-header { padding: 1.5rem 3rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+  .page-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.5rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 0.5rem; }
+  .page-desc { font-size: 13px; color: var(--mid); line-height: 1.8; }
+
+  .content { padding: 3rem; max-width: 780px; }
+
+  .photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+  .photo-wrap { position: relative; }
+  .photo-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; cursor: zoom-in; transition: opacity 0.2s; }
+  .photo-wrap img:hover { opacity: 0.9; }
+  .photo-logo { position: absolute; bottom: 8px; right: 8px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.12em; color: rgba(250,250,248,0.75); text-shadow: 0 1px 3px rgba(0,0,0,0.4); pointer-events: none; }
+  .photo-caption { font-size: 11px; letter-spacing: 0.08em; color: var(--light); margin-top: 0.4rem; margin-bottom: 1rem; }
+
+  .desc { font-size: 14px; color: var(--mid); line-height: 2.1; margin-bottom: 1.5rem; }
+  .note-box { background: var(--cream); border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; font-size: 13px; color: var(--mid); line-height: 2; margin-top: 1.5rem; }
+  .note-box strong { color: var(--charcoal); }
+
+  #lightbox { display:none; position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; cursor:zoom-out; }
+  #lightboxImg { max-width:90vw; max-height:90vh; object-fit:contain; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .breadcrumb { padding: 4.5rem 1.5rem 0; }
+    .page-header { padding: 1.5rem 1.5rem 2rem; }
+    .content { padding: 2rem 1.5rem; }
+    .photo-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>工程做法知識庫</span></div>
+  <a href="knowledge.html" class="nav-back">← 回知識庫</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="knowledge.html">知識庫</a>
+  <span>›</span>
+  <a href="knowledge.html">油漆</a>
+  <span>›</span>
+  <span style="color:var(--charcoal);">系統櫃後方不油漆說明</span>
+</div>
+
+<div class="page-header">
+  <div class="page-label">PAINT · NOTICE</div>
+  <div class="page-title">系統櫃後方不油漆說明</div>
+  <div class="page-desc">系統櫃與木作櫃體靠牆的區域，施工上不會重新粉刷，油漆計價數量會依此扣除。</div>
+</div>
+
+<div class="content">
+  <div class="desc">油漆工程的計價方式是依照實際粉刷面積計算。凡是有系統櫃、木作櫃體、床頭板等靠牆的位置，該區域牆面在施工時不會重新粉刷，因此這些區域的面積會從油漆總量中扣除。</div>
+
+  <div class="photo-row">
+    <div class="photo-wrap">
+      <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/paint-room.jpg" alt="油漆施工中" onclick="openLightbox(this.src)">
+      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-caption">油漆施工中，可見部分牆面尚未粉刷</div>
+    </div>
+    <div class="photo-wrap">
+      <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/cabinet-nopaint.jpg" alt="系統櫃安裝後" onclick="openLightbox(this.src)">
+      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-caption">系統櫃安裝後，右側牆面為未粉刷區域</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>計價說明：</strong>油漆報價時會依照空間平面圖評估實際粉刷面積，系統櫃、衣櫃、木作牆面後方的牆壁面積不計入報價範圍。<br><br>
+    <strong>注意事項：</strong>如果日後要移除系統櫃，後方牆面可能顯示與其他區域不同的顏色或未粉刷狀態，需要另行補漆。建議規劃時一併考量未來彈性需求。
+  </div>
+</div>
+
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;">
+  <img id="lightboxImg" style="max-width:90vw;max-height:90vh;object-fit:contain;" src="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>

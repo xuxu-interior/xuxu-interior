@@ -180,9 +180,6 @@
     <div class="cat-group">
       <button class="cat-btn" onclick="filterCat('paint', this)">油漆 <span class="cat-count" id="count-paint"></span></button>
     </div>
-    <div class="cat-group">
-      <button class="cat-btn" onclick="filterCat('style', this)">風格介紹 <span class="cat-count" id="count-style"></span></button>
-    </div>
   </aside>
 
   <main class="main">
@@ -254,12 +251,20 @@ const items = [
     detail: `<div class="modal-section"><div class="modal-section-title">燈帶常見做法</div><ul class="modal-list"><li><strong>天花間接燈帶</strong>：藏在天花板燈盒內，光線往上打再反射，視覺最柔和。需預留至少 15cm 燈盒深度。</li><li><strong>層板底部燈帶</strong>：裝在展示層板下方，打亮展示物品，製造精品感。</li><li><strong>床頭背牆燈帶</strong>：藏在床頭板背後，提供柔和輔助光，取代床頭燈。</li><li><strong>踢腳燈帶</strong>：裝在踢腳板或浴室鏡櫃底部，夜間導引光，避免開大燈。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>燈帶需在水電階段就配好迴路，施工後無法補救。決定要做前請提早告知，不要等木作完工才說要加。</div>` },
 
   // 木工板材
-  { id:7, cat:'wood', tag:'木工板材', name:'夾板 vs 木心板', desc:'夾板與木心板是木工工程最常見的兩種基材，了解差異才能做對選擇。',
-    pros:['各有適用場合'], cons:['需確認甲醛等級'],
-    detail: `<div class="modal-section"><div class="modal-section-title">兩者比較</div><ul class="modal-list"><li><strong>夾板（合板）</strong>：多層薄木片膠合，穩定性高，不易變形，承重力強。適合木作底材、地板架高、大面積貼皮工程。</li><li><strong>木心板</strong>：中間為實木條，兩面夾薄木片。鎖螺絲力強，適合門片、抽屜、框架結構。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>現代木工工程夾板使用率高，木心板多用於需要鎖釘的部位。兩者都需確認 F3、F4 級（日本標準）或 E0 等級低甲醛板材。</div>` },
   { id:8, cat:'wood', tag:'木工板材', name:'木皮板 vs 美耐板', desc:'表面貼覆材料的選擇，影響木作成品的外觀質感與耐用度。',
     pros:['外觀差異大'], cons:['木皮較嬌貴'],
     detail: `<div class="modal-section"><div class="modal-section-title">表面材比較</div><ul class="modal-list"><li><strong>木皮板</strong>：真實木皮貼覆，質感自然溫潤，觸感接近實木。缺點是怕水、怕刮，需定期保養。適合臥室、客廳展示牆。</li><li><strong>美耐板（防火板）</strong>：高壓樹脂板，耐刮、耐熱、易清潔，顏色樣式多樣。適合廚房門片、書桌桌面、高使用頻率區域。</li><li><strong>鋼琴烤漆</strong>：噴漆處理，光滑反光質感，高級感強。易留指紋，修復費用高。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房、書桌優先美耐板；展示牆、電視牆可考慮木皮；鋼琴烤漆適合重點門片，不建議大面積使用。</div>` },
+  { id:21, cat:'wood', tag:'木工板材', name:'電視牆貓道作法', desc:'電視牆木作內藏走線通道，讓所有線路完全不外露，兩種常見作法。',
+    pros:['線路隱藏乾淨'], cons:['需提前規劃'],
+    link: 'kb-tvwall.html',
+    svg: `<svg viewBox="0 0 120 80" width="90" height="60" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="15" width="104" height="50" rx="2" fill="#E8E0D4" stroke="#B4B2A9" stroke-width="1"/>
+      <rect x="18" y="25" width="60" height="30" rx="1" fill="#2A2A28"/>
+      <rect x="82" y="28" width="22" height="8" rx="1" fill="#B4B2A9"/>
+      <rect x="82" y="40" width="22" height="4" rx="1" fill="#B4B2A9"/>
+      <rect x="82" y="48" width="22" height="4" rx="1" fill="#B4B2A9"/>
+      <line x1="8" y1="55" x2="112" y2="55" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="3,2"/>
+    </svg>` },
 
   // 石材磁磚
   { id:9, cat:'stone', tag:'石材磁磚', name:'人造石 vs 天然大理石', desc:'檯面材料兩大主流，了解價格、保養、質感的差異再做決定。',
@@ -296,26 +301,21 @@ const items = [
   { id:14, cat:'paint', tag:'油漆', name:'水泥漆 vs 乳膠漆', desc:'兩種最常見的室內牆面塗料，差異在哪裡？',
     pros:['乳膠漆較耐用'], cons:['水泥漆價格便宜'],
     detail: `<div class="modal-section"><div class="modal-section-title">核心差異</div><ul class="modal-list"><li><strong>水泥漆</strong>：價格便宜，施工方便，適合預算有限的空間。缺點是耐洗性差，容易掉色，不好局部修補。</li><li><strong>乳膠漆</strong>：耐磨、耐洗、附著力強，可以用濕布擦拭，適合有小孩或使用頻率高的空間。顏色更細膩，調色選擇更多。</li><li><strong>礦物塗料</strong>：天然礦物成分，透氣性佳，不易結露發霉，適合有濕氣問題的空間，價格較高。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>有小孩的家庭一定要選乳膠漆，好清潔。預算有限的出租套房可用水泥漆。全室如果要換一個顏色，費用差異其實不大，建議直接選乳膠漆。</div>` },
-  { id:15, cat:'paint', tag:'油漆', name:'面漆種類說明', desc:'平光、半光、全光三種面漆光澤度的差異與適用空間。',
-    pros:['影響視覺質感'], cons:['光面較易見瑕疵'],
-    detail: `<div class="modal-section"><div class="modal-section-title">光澤度選擇</div><ul class="modal-list"><li><strong>平光（無光澤）</strong>：最常見，牆面顯色最飽滿，不反光，視覺質感最好。缺點是不易清潔，手痕不好擦。</li><li><strong>半光（蛋殼光）</strong>：帶有輕微光澤，比平光更好清潔，適合廚房、兒童房等使用頻繁的空間。</li><li><strong>全光（亮光）</strong>：反光效果強，多用於木作門片、踢腳板、窗框，不適合大面積牆面（會顯出牆面不平整）。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>主牆建議平光或蛋殼光；木作門片建議半光或全光；浴室、廚房建議蛋殼光以上，好清潔。</div>` },
   { id:16, cat:'paint', tag:'油漆', name:'油漆工序說明', desc:'批土、底漆、面漆的施工順序與每道工序的作用。',
     pros:['工序完整才耐用'], cons:['省略批土易有瑕疵'],
     detail: `<div class="modal-section"><div class="modal-section-title">標準施工工序</div><ul class="modal-list"><li><strong>第一步：批土整平</strong>：填補牆面坑洞、裂縫，確保表面平整。批土次數影響最終平整度，一般 1–2 次，高標準可達 3 次。</li><li><strong>第二步：打磨</strong>：批土乾燥後打磨，去除批土痕跡，確保表面光滑。</li><li><strong>第三步：底漆</strong>：增加面漆附著力，封閉牆面毛細孔，防止面漆不均勻。</li><li><strong>第四步：面漆（2–3道）</strong>：分多次薄塗，每道乾燥後再上下一道，確保顏色均勻飽和。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>油漆工程最怕省工序。批土次數、面漆道數都影響最終品質。驗收時注意燈光斜照牆面，最容易看出是否平整。</div>` },
-
-  // 風格
-  { id:17, cat:'style', tag:'風格介紹', name:'現代簡約風', desc:'線條俐落、色調乾淨，強調空間感與功能性的設計風格。',
-    pros:['耐看','不易退流行'], cons:['容易顯得冷調'],
-    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：白色、米白、淺灰為主，避免過多顏色干擾。</li><li><strong>材質</strong>：白色烤漆、鐵件、玻璃、水泥紋、淺色木皮。</li><li><strong>收納</strong>：強調隱藏式收納，讓視覺保持乾淨。</li><li><strong>燈光</strong>：偏好嵌入式燈具，避免吊燈過多。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>現代簡約不等於「空洞」，重點在材質選用與比例拿捏。適合喜歡乾淨、好整理的生活方式。</div>` },
-  { id:18, cat:'style', tag:'風格介紹', name:'日式侘寂風', desc:'以不完美為美，強調自然材質、留白與歲月感的日式美學。',
-    pros:['靜謐有深度'], cons:['需控制整體調性'],
-    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：大地色系、米白、深褐、消光黑，帶有溫度感的中性色。</li><li><strong>材質</strong>：實木、竹、麻、手作質感磁磚、清水模、和紙。</li><li><strong>傢俱</strong>：低矮傢俱為主，接近地面的視角讓空間更沉靜。</li><li><strong>燈光</strong>：偏暖色溫（2700–3000K），避免太亮，製造靜謐感。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>侘寂風容易流於「刻意做舊」，關鍵在材質選用的真實感，而不是堆砌日式元素。適合喜歡安靜、慢生活的人。</div>` },
-  { id:19, cat:'style', tag:'風格介紹', name:'輕奢風格', desc:'在現代框架中加入奢華質感，透過材質與細節傳遞精緻感。',
-    pros:['質感提升明顯'], cons:['預算需求較高'],
-    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：深灰、霧黑、奶白、香檳金、莫蘭迪色系。</li><li><strong>材質</strong>：大理石、鏡面、金屬收邊、絨布傢俱、玻璃隔間。</li><li><strong>照明</strong>：條燈、間接燈光、金屬質感燈具，強調光影層次。</li><li><strong>收納</strong>：系統板結合鏡面或金屬把手，兼顧實用與美感。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>輕奢的核心是材質，而不是元素堆砌。一塊好的石材檯面，比十個水晶燈更有質感。</div>` },
-  { id:20, cat:'style', tag:'風格介紹', name:'北歐自然風', desc:'以人為本，強調舒適、溫暖與自然材質的北歐設計精神。',
-    pros:['溫暖舒適','適合家庭'], cons:['容易顯得平淡'],
-    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：白色、淺木色、奶油色，點綴莫蘭迪綠或藍。</li><li><strong>材質</strong>：淺色原木、棉麻織品、藤編、陶器。</li><li><strong>植栽</strong>：大量綠植是北歐風的靈魂，帶入自然感。</li><li><strong>傢俱</strong>：機能性強，強調使用者舒適，多圓角設計。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>北歐風容易做到，但要做出層次需要在軟裝上用心。建議從傢俱、地毯、窗簾的材質搭配入手，而不只是顏色配色。</div>` },
+  { id:22, cat:'paint', tag:'油漆', name:'系統櫃後方不油漆說明', desc:'系統櫃與木作櫃體靠牆區域不會重新粉刷，油漆數量會依此扣除。',
+    pros:['了解計價方式'], cons:[],
+    link: 'kb-paint-notice.html',
+    svg: `<svg viewBox="0 0 120 80" width="90" height="60" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="10" width="104" height="60" rx="2" fill="#F5F2ED" stroke="#B4B2A9" stroke-width="1"/>
+      <rect x="8" y="10" width="40" height="60" rx="2" fill="#E8E0D4" stroke="#B4B2A9" stroke-width="1"/>
+      <rect x="52" y="10" width="40" height="60" rx="2" fill="#E8E0D4" stroke="#B4B2A9" stroke-width="1"/>
+      <line x1="8" y1="40" x2="48" y2="40" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3,2"/>
+      <line x1="52" y1="40" x2="92" y2="40" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="3,2"/>
+      <rect x="96" y="10" width="16" height="60" rx="1" fill="#D3D1C7" stroke="#B0AFA9" stroke-width="0.5"/>
+      <text x="104" y="44" text-anchor="middle" font-size="7" fill="#6B6A66" font-family="sans-serif">油漆</text>
+    </svg>` },
 ];
 
 let currentCat = 'all';
@@ -353,7 +353,7 @@ function renderItems() {
     `).join('');
   }
   document.getElementById('count-all').textContent = items.length;
-  ['cabinet','light','wood','stone','floor','paint','style'].forEach(cat => {
+  ['cabinet','light','wood','stone','floor','paint'].forEach(cat => {
     const el = document.getElementById('count-'+cat);
     if (el) el.textContent = items.filter(i=>i.cat===cat).length;
   });

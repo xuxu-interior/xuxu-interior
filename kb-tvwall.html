@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電視牆貓道作法 | 序續工程做法知識庫</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif TC', Georgia, serif; background: var(--warm-white); color: var(--charcoal); line-height: 1.8; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300&display=swap');
+  a { color: inherit; text-decoration: none; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: rgba(250,250,248,0.95); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.1em; font-weight: 300; }
+  .nav-logo span { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); display: block; }
+  .nav-back { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .nav-back:hover { color: var(--charcoal); }
+
+  .breadcrumb { padding: 5rem 3rem 0; display: flex; gap: 0.5rem; align-items: center; font-size: 12px; color: var(--light); letter-spacing: 0.08em; }
+  .breadcrumb a { color: var(--mid); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--charcoal); }
+
+  .page-header { padding: 1.5rem 3rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+  .page-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.5rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 0.5rem; }
+  .page-desc { font-size: 13px; color: var(--mid); line-height: 1.8; }
+
+  .content { padding: 3rem; }
+
+  .method { margin-bottom: 4rem; }
+  .method-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+  .method-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--accent-light); font-weight: 300; line-height: 1; }
+  .method-title { font-size: 18px; font-weight: 500; letter-spacing: 0.04em; }
+  .method-tag { font-size: 11px; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-light); padding: 3px 10px; }
+
+  .photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .photo-wrap { position: relative; }
+  .photo-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; cursor: zoom-in; transition: opacity 0.2s; }
+  .photo-wrap img:hover { opacity: 0.9; }
+  .photo-logo { position: absolute; bottom: 8px; right: 8px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.12em; color: rgba(250,250,248,0.75); text-shadow: 0 1px 3px rgba(0,0,0,0.4); pointer-events: none; }
+  .photo-caption { font-size: 11px; letter-spacing: 0.08em; color: var(--light); margin-top: 0.4rem; }
+
+  .method-desc { font-size: 14px; color: var(--mid); line-height: 2; margin-bottom: 1rem; }
+  .note-box { background: var(--cream); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; font-size: 13px; color: var(--mid); line-height: 1.9; }
+  .note-box strong { color: var(--charcoal); }
+
+  #lightbox { display:none; position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; cursor:zoom-out; }
+  #lightboxImg { max-width:90vw; max-height:90vh; object-fit:contain; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .breadcrumb { padding: 4.5rem 1.5rem 0; }
+    .page-header { padding: 1.5rem 1.5rem 2rem; }
+    .content { padding: 2rem 1.5rem; }
+    .photo-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>工程做法知識庫</span></div>
+  <a href="knowledge.html" class="nav-back">← 回知識庫</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="knowledge.html">知識庫</a>
+  <span>›</span>
+  <a href="knowledge.html">木工板材</a>
+  <span>›</span>
+  <span style="color:var(--charcoal);">電視牆貓道作法</span>
+</div>
+
+<div class="page-header">
+  <div class="page-label">WOOD WORK · TV WALL</div>
+  <div class="page-title">電視牆貓道作法</div>
+  <div class="page-desc">電視牆木作內藏線路通道，讓所有線路完全不外露，兩種常見做法各有適用情境。</div>
+</div>
+
+<div class="content">
+
+  <!-- 作法一 -->
+  <div class="method">
+    <div class="method-header">
+      <div class="method-num">01</div>
+      <div>
+        <div class="method-title">木作隔間牆退厚度，壁掛架內崁</div>
+        <div style="margin-top:4px;"><span class="method-tag">電視不凸出</span></div>
+      </div>
+    </div>
+    <div class="photo-row">
+      <div class="photo-wrap">
+        <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-01.jpg" alt="木作骨架" onclick="openLightbox(this.src)">
+        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-caption">木作骨架施工中</div>
+      </div>
+      <div class="photo-wrap">
+        <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-02.jpg" alt="封板完成" onclick="openLightbox(this.src)">
+        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-caption">木作封板完成</div>
+      </div>
+      <div class="photo-wrap">
+        <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-03.jpg" alt="完工實景" onclick="openLightbox(this.src)">
+        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-caption">完工實景</div>
+      </div>
+    </div>
+    <div class="method-desc">木作隔間牆在施工時刻意退出壁掛架的厚度，讓電視壁掛架完全藏入牆體內，從側面看電視牆是平整的，電視不會有凸出感。貓道空間同時作為線路通道，所有 HDMI、電源線都從牆內走，正面完全看不到任何線路。</div>
+    <div class="note-box"><strong>適合情境：</strong>追求電視牆整體俐落感、不希望電視凸出牆面的設計。需在木作施工前確認電視品牌與壁掛架尺寸，以確保退出正確厚度。</div>
+  </div>
+
+  <!-- 作法二 -->
+  <div class="method">
+    <div class="method-header">
+      <div class="method-num">02</div>
+      <div>
+        <div class="method-title">薄型壁掛架，木作預留貓道走線</div>
+        <div style="margin-top:4px;"><span class="method-tag">線路隱藏，電視正常掛</span></div>
+      </div>
+    </div>
+    <div class="photo-row">
+      <div class="photo-wrap">
+        <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-04.jpg" alt="骨架施工" onclick="openLightbox(this.src)">
+        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-caption">木作骨架與貓道預留</div>
+      </div>
+      <div class="photo-wrap">
+        <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-05.jpg" alt="封板完成" onclick="openLightbox(this.src)">
+        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-caption">封板完成，預留出線孔</div>
+      </div>
+    </div>
+    <div class="method-desc">使用薄型電視壁掛架，電視牆木作不需要退特別厚度，但木作骨架內仍預留貓道空間讓線路通行。電視安裝後線路從牆內出來，正面不會有外露線路，整體視覺依然乾淨。</div>
+    <div class="note-box"><strong>適合情境：</strong>預算較低或電視牆設計較薄的空間。電視會稍微凸出牆面，但線路完全隱藏。施工相對作法一簡單，費用也較低。</div>
+  </div>
+
+</div>
+
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;">
+  <img id="lightboxImg" style="max-width:90vw;max-height:90vh;object-fit:contain;" src="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>
