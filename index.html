@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>序續室內裝修工程 | 空間的序曲，生活的延續</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Serif TC', 'Georgia', serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; letter-spacing: 0.12em; font-weight: 300; }
+  .nav-logo span { font-size: 11px; letter-spacing: 0.2em; color: var(--mid); display: block; font-family: 'Noto Serif TC', serif; font-weight: 300; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { font-size: 13px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta {
+    font-size: 12px; letter-spacing: 0.12em;
+    padding: 8px 20px;
+    border: 0.5px solid var(--charcoal);
+    color: var(--charcoal);
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--charcoal); color: var(--warm-white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 4rem 5rem;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(160deg, #F0EBE2 0%, #F5F2ED 60%, #EDE8E0 100%);
+  }
+  .hero-line {
+    position: absolute; top: 12rem; right: 4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px; font-weight: 300; line-height: 1;
+    color: rgba(42,42,40,0.04);
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.25em; color: var(--accent);
+    margin-bottom: 1.5rem; font-family: 'Noto Serif TC', serif; font-weight: 300;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 300; line-height: 1.1;
+    letter-spacing: 0.02em;
+    margin-bottom: 2rem;
+  }
+  .hero-sub {
+    font-size: 14px; color: var(--mid); line-height: 2;
+    max-width: 460px; letter-spacing: 0.04em;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1.5rem; align-items: center; }
+  .btn-primary {
+    font-size: 12px; letter-spacing: 0.15em;
+    padding: 14px 32px;
+    background: var(--charcoal); color: var(--warm-white);
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-ghost {
+    font-size: 12px; letter-spacing: 0.15em; color: var(--mid);
+    border-bottom: 0.5px solid var(--light);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--charcoal); }
+  .hero-scroll {
+    position: absolute; right: 4rem; bottom: 5rem;
+    font-size: 11px; letter-spacing: 0.2em; color: var(--light);
+    writing-mode: vertical-rl;
+  }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.3em; color: var(--accent);
+    margin-bottom: 1rem; font-weight: 400;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300; line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-sub { font-size: 14px; color: var(--mid); line-height: 2; max-width: 520px; }
+  .divider { width: 32px; height: 0.5px; background: var(--accent); margin: 2rem 0; }
+
+  /* ABOUT */
+  #about { background: var(--warm-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+  .about-text p { font-size: 15px; line-height: 2.1; color: var(--charcoal); margin-bottom: 1.2rem; }
+  .about-text .quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 22px; line-height: 1.6; color: var(--accent);
+    border-left: 1.5px solid var(--accent); padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .values-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
+  .value-item { background: var(--warm-white); padding: 2rem 1.5rem; }
+  .value-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--accent-light); font-weight: 300; line-height: 1; margin-bottom: 0.8rem; }
+  .value-title { font-size: 13px; letter-spacing: 0.1em; font-weight: 500; margin-bottom: 0.5rem; }
+  .value-desc { font-size: 12px; color: var(--mid); line-height: 1.8; }
+
+  /* PROFILE */
+  #profile { background: var(--cream); }
+  .profile-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+  .profile-card { background: var(--warm-white); padding: 2.5rem; border: 0.5px solid var(--border); }
+  .profile-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; margin-bottom: 0.3rem; }
+  .profile-role { font-size: 11px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 2rem; }
+  .profile-row { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 0.5px solid var(--border); font-size: 13px; }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-row span:first-child { color: var(--mid); }
+  .awards-list { list-style: none; margin-top: 2rem; }
+  .awards-list li { font-size: 13px; color: var(--charcoal); padding: 0.7rem 0; border-bottom: 0.5px solid var(--border); display: flex; gap: 1rem; align-items: baseline; }
+  .awards-list li::before { content: '—'; color: var(--accent); flex-shrink: 0; }
+  .cert-badge {
+    display: inline-block; margin-top: 1.5rem;
+    background: var(--accent-light); padding: 8px 16px;
+    font-size: 12px; letter-spacing: 0.1em; color: var(--accent);
+  }
+
+  /* FLOW */
+  #flow { background: var(--warm-white); }
+  .flow-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 4rem; margin-bottom: 4rem; }
+  .flow-stages { display: grid; gap: 0; }
+  .flow-stage { border-top: 0.5px solid var(--border); padding: 2rem 0; display: grid; grid-template-columns: 80px 1fr; gap: 2rem; align-items: start; }
+  .flow-stage:last-child { border-bottom: 0.5px solid var(--border); }
+  .stage-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--accent-light); font-weight: 300; line-height: 1; }
+  .stage-title { font-size: 15px; letter-spacing: 0.05em; font-weight: 500; margin-bottom: 0.4rem; }
+  .stage-desc { font-size: 13px; color: var(--mid); line-height: 1.8; }
+  .stage-tag { display: inline-block; font-size: 10px; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-light); padding: 3px 10px; margin-top: 0.5rem; }
+  .flow-note {
+    background: var(--cream); padding: 2rem 2.5rem;
+    border-left: 2px solid var(--accent);
+    font-size: 13px; color: var(--mid); line-height: 2;
+    margin-top: 3rem;
+  }
+  .flow-note strong { color: var(--charcoal); }
+
+  /* WORKS */
+  #works { background: var(--cream); }
+  .works-intro { max-width: 600px; margin-bottom: 4rem; }
+  .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .work-item { cursor: pointer; }
+  .work-img {
+    aspect-ratio: 4/3; background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+    margin-bottom: 1rem;
+  }
+  .work-img-placeholder {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; color: var(--accent); letter-spacing: 0.15em;
+    text-align: center; line-height: 2;
+  }
+  .work-label { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); }
+  .work-title { font-size: 14px; margin-top: 3px; }
+
+  /* PRICING */
+  #pricing { background: var(--warm-white); }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; }
+  .price-card { border: 0.5px solid var(--border); padding: 3rem; position: relative; }
+  .price-card.featured { border-color: var(--accent); }
+  .price-badge {
+    position: absolute; top: -1px; left: 2.5rem;
+    background: var(--accent); color: var(--warm-white);
+    font-size: 10px; letter-spacing: 0.15em; padding: 4px 14px;
+  }
+  .price-title { font-size: 13px; letter-spacing: 0.15em; color: var(--mid); margin-bottom: 1.5rem; }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; line-height: 1; margin-bottom: 0.3rem; }
+  .price-unit { font-size: 12px; color: var(--mid); margin-bottom: 2rem; }
+  .price-includes { list-style: none; }
+  .price-includes li { font-size: 13px; padding: 0.7rem 0; border-bottom: 0.5px solid var(--border); color: var(--mid); display: flex; gap: 0.8rem; }
+  .price-includes li::before { content: '·'; color: var(--accent); }
+  .price-includes li:last-child { border: none; }
+  .price-note { font-size: 12px; color: var(--accent); margin-top: 1.5rem; line-height: 1.8; }
+
+  /* SERVICE AREA */
+  .area-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .area-card { background: var(--cream); padding: 2rem; border: 0.5px solid var(--border); }
+  .area-tag { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.5rem; }
+  .area-name { font-size: 18px; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .area-desc { font-size: 12px; color: var(--mid); line-height: 1.8; }
+
+  /* FAQ */
+  #faq { background: var(--cream); }
+  .faq-list { margin-top: 3rem; max-width: 720px; }
+  .faq-item { border-bottom: 0.5px solid var(--border); }
+  .faq-q {
+    padding: 1.5rem 0;
+    font-size: 15px; letter-spacing: 0.04em;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    user-select: none;
+  }
+  .faq-q::after { content: '+'; font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--accent); transition: transform 0.2s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { font-size: 13px; color: var(--mid); line-height: 2.1; padding-bottom: 1.5rem; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* CONTACT */
+  #contact { background: var(--charcoal); color: var(--warm-white); }
+  #contact .section-label { color: var(--accent); }
+  #contact .section-title { color: var(--warm-white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 4rem; }
+  .contact-text p { font-size: 14px; color: rgba(250,250,248,0.6); line-height: 2.1; margin-bottom: 1rem; }
+  .contact-closing {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 20px; line-height: 1.7; color: rgba(250,250,248,0.8);
+    margin-top: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 13px; letter-spacing: 0.08em;
+    color: rgba(250,250,248,0.6); padding: 1rem 0;
+    border-bottom: 0.5px solid rgba(250,250,248,0.1);
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--warm-white); }
+  .contact-link .link-label { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); display: block; margin-bottom: 2px; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea, .contact-form select {
+    background: rgba(250,250,248,0.05);
+    border: 0.5px solid rgba(250,250,248,0.15);
+    color: var(--warm-white);
+    padding: 0.9rem 1rem;
+    font-size: 13px; font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(250,250,248,0.3); }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form textarea { height: 100px; resize: none; }
+  .contact-form select { color: rgba(250,250,248,0.6); }
+  .contact-form select option { background: var(--charcoal); }
+  .submit-btn {
+    background: var(--accent); color: var(--warm-white);
+    border: none; padding: 14px 32px;
+    font-size: 12px; letter-spacing: 0.15em; font-family: inherit;
+    cursor: pointer; transition: opacity 0.2s; align-self: flex-start;
+  }
+  .submit-btn:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    background: #1E1E1C; color: rgba(250,250,248,0.3);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.1em;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-line { display: none; }
+    .about-grid, .profile-grid, .flow-intro, .pricing-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .works-grid { grid-template-columns: 1fr 1fr; }
+    .area-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>XU · INTERIOR DESIGN</span></div>
+  <div class="nav-links">
+    <a href="#about">品牌理念</a>
+    <a href="#profile">關於設計師</a>
+    <a href="#flow">服務流程</a>
+    <a href="#works">作品</a>
+    <a href="#pricing">設計費</a>
+    <a href="#faq">常見問題</a>
+  </div>
+  <a href="#contact" class="nav-cta">開始諮詢</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line">XU</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">序續室內裝修工程　台中 · 彰化 · 苗栗</div>
+    <h1 class="hero-title">空間的序曲<br>生活的延續</h1>
+    <p class="hero-sub">真正的設計不是風格的堆砌，而是從你的日常開始。<br>不仿製圖片，不強塞風格，從你的生活步調出發，讓空間成為一首序曲，延續出理想中安穩、自在的生活。</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">預約諮詢</a>
+      <a href="#flow" class="btn-ghost">了解服務流程 →</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">ABOUT US</div>
+  <h2 class="section-title">我們相信<br>好的空間，住起來剛剛好</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>在序續，我們相信真正的設計不是風格的堆砌，而是從你的日常開始。</p>
+      <div class="quote">不只是想要一個「好看的空間」，而是想要一個住起來剛剛好、打理得輕鬆，能陪你生活、承接你情緒的家。</div>
+      <p>設計不只是當下的選擇，而是未來生活的樣子。</p>
+      <p>我們了解每個業主的職業、興趣、日常、喜歡的風格、使用習慣，在預算範圍內，實現具差異化與可執行性的空間方案。</p>
+    </div>
+    <div>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-num">01</div>
+          <div class="value-title">客戶要的</div>
+          <div class="value-desc">深入了解你的生活方式與真實需求，設計從生活出發</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02</div>
+          <div class="value-title">做得到的</div>
+          <div class="value-desc">在預算與工程條件內，提出實際可執行的空間方案</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03</div>
+          <div class="value-title">差異性</div>
+          <div class="value-desc">不仿製圖片，不強塞風格，讓每個空間有屬於你的樣子</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="section-label">ABOUT THE DESIGNER</div>
+  <h2 class="section-title">關於設計師</h2>
+  <div class="divider"></div>
+  <div class="profile-grid">
+    <div>
+      <div class="profile-card">
+        <div class="profile-name">序續設計師</div>
+        <div class="profile-role">INTERIOR DESIGNER · FOUNDER</div>
+        <div class="profile-row"><span>學歷</span><span>台中科技大學 室內設計系</span></div>
+        <div class="profile-row"><span>灰色大門設計</span><span>專案設計師</span></div>
+        <div class="profile-row"><span>拾葉建築室內設計</span><span>專案設計師 · 三年</span></div>
+        <div class="profile-row"><span>工程類型</span><span>客變 毛胚 老屋 新成屋 透天 公設</span></div>
+        <div class="cert-badge">室內裝修工程管理乙級</div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:14px;color:var(--mid);line-height:2.1;margin-bottom:2rem;">設計的價值，並非替你決定，而是陪你釐清；不是將一切規劃得毫無餘地，而是在秩序與生活之間，找到那個留白剛好的位置。</p>
+      <p style="font-size:13px;letter-spacing:0.1em;color:var(--accent);margin-bottom:1rem;">AWARDS</p>
+      <ul class="awards-list">
+        <li>智慧化空間設計競賽　第一名</li>
+        <li>金點新秀　空間設計類　入圍</li>
+        <li>金點概念設計獎　空間設計類　入圍</li>
+        <li>A+創意季　空間設計類　入圍</li>
+        <li>新一代設計獎　優選</li>
+        <li>第十二屆大學院校室內設計系競圖大賽　佳作</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="section-label">SERVICE FLOW</div>
+  <h2 class="section-title">服務流程</h2>
+  <div class="divider"></div>
+  <div class="flow-intro">
+    <p class="section-sub">一個舒適的空間的形成，往往不是由某一方主導、而是共同理解與推進。設計服務流程預計 45–60 個工作天，依照討論進度及坪數大小調整。</p>
+    <div></div>
+  </div>
+
+  <div class="flow-stages">
+    <div class="flow-stage">
+      <div class="stage-num">01</div>
+      <div>
+        <div class="stage-title">簽設計約 · 設計費第一期</div>
+        <div class="stage-desc">正式啟動設計服務，業主整理需求、喜歡的風格參考照，讓我了解你的生活樣貌。</div>
+        <span class="stage-tag">設計師 + 業主</span>
+      </div>
+    </div>
+    <div class="flow-stage">
+      <div class="stage-num">02</div>
+      <div>
+        <div class="stage-title">丈量現況 · 繪製現況圖</div>
+        <div class="stage-desc">現場丈量各空間尺寸、確認格局與結構條件，繪製現況放樣圖作為設計基礎。</div>
+        <span class="stage-tag">設計師主導</span>
+      </div>
+    </div>
+    <div class="flow-stage">
+      <div class="stage-num">03</div>
+      <div>
+        <div class="stage-title">平面方案提案 · 確認定案</div>
+        <div class="stage-desc">提供 2–5 種不同動線配置方案，平面圖會議約 2hr，預計 2–3 次討論後確認定案，業主繳交設計費第二期。</div>
+        <span class="stage-tag">需出席會議</span>
+      </div>
+    </div>
+    <div class="flow-stage">
+      <div class="stage-num">04</div>
+      <div>
+        <div class="stage-title">3D 建模 · 空間渲染 · 確認定案</div>
+        <div class="stage-desc">依確認方案製作 3D 建模與實景渲染，空間會議約 2hr，預計 2–3 次討論後定案。</div>
+        <span class="stage-tag">需出席會議</span>
+      </div>
+    </div>
+    <div class="flow-stage">
+      <div class="stage-num">05</div>
+      <div>
+        <div class="stage-title">施工圖繪製</div>
+        <div class="stage-desc">輸出完整施工圖系：水電圖、拆除圖、天花圖、燈具迴路圖、平面施工圖、立面施工圖（櫃體分割、櫃內圖、等角圖、細部大樣圖）。</div>
+        <span class="stage-tag">設計師主導</span>
+      </div>
+    </div>
+    <div class="flow-stage">
+      <div class="stage-num">06</div>
+      <div>
+        <div class="stage-title">選材選色 · 廠商報價 · 簽訂工程合約</div>
+        <div class="stage-desc">選材選色材質會議約 4hr，廠商場勘報價後製作工程報價單，報價會議約 1.5hr，確認後簽訂工程合約正式進場。</div>
+        <span class="stage-tag">需出席會議</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-note">
+    <strong>施工期間進度回報：</strong>每週上傳工地照片至 LINE，訊息即時回覆，讓你隨時掌握施工狀況，安心不擔心。<br>
+    <strong>完工保固：</strong>一般工程保固一年，施工瑕疵免費修繕。
+  </div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-label">PORTFOLIO</div>
+  <h2 class="section-title">設計作品</h2>
+  <div class="divider"></div>
+  <div class="works-intro">
+    <p class="section-sub">每個空間都是一段生活的開始。從 3D 渲染到完工實景，記錄每一個與業主共同創造的家。</p>
+  </div>
+  <div class="works-grid">
+    <div class="work-item">
+      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
+      <div class="work-label">新成屋 · 台中</div>
+      <div class="work-title">主臥室設計</div>
+    </div>
+    <div class="work-item">
+      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
+      <div class="work-label">新成屋 · 台中</div>
+      <div class="work-title">客廳空間規劃</div>
+    </div>
+    <div class="work-item">
+      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
+      <div class="work-label">老屋翻新 · 台中</div>
+      <div class="work-title">全室設計施工</div>
+    </div>
+    <div class="work-item">
+      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
+      <div class="work-label">新成屋 · 彰化</div>
+      <div class="work-title">收納櫃體規劃</div>
+    </div>
+    <div class="work-item">
+      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
+      <div class="work-label">新成屋 · 台中</div>
+      <div class="work-title">兒童房設計</div>
+    </div>
+    <div class="work-item">
+      <div class="work-img"><div class="work-img-placeholder">作品照片<br>即將上傳</div></div>
+      <div class="work-label">毛胚屋 · 苗栗</div>
+      <div class="work-title">全室設計施工</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-label">DESIGN FEE</div>
+  <h2 class="section-title">設計費計算</h2>
+  <div class="divider"></div>
+  <p class="section-sub">設計費包含丈量到完整施工圖的全套服務。工程報價另計，施工最低金額 80 萬元。</p>
+
+  <div class="pricing-grid">
+    <div class="price-card featured">
+      <div class="price-badge">限時優惠</div>
+      <div class="price-title">首次平面提案（30坪以內）</div>
+      <div class="price-amount">$8,000</div>
+      <div class="price-unit">元 · 後續簽約設計約可全額退還</div>
+      <ul class="price-includes">
+        <li>現場丈量</li>
+        <li>現況放樣圖</li>
+        <li>2–5 種平面配置方案</li>
+        <li>平面圖會議（預計 2–3 次）</li>
+        <li>簽約後費用全額退還</li>
+      </ul>
+      <div class="price-note">先了解我的做法再決定是否繼續，零風險體驗設計服務。</div>
+    </div>
+    <div class="price-card">
+      <div class="price-title">完整設計服務</div>
+      <div class="price-amount">$4,500</div>
+      <div class="price-unit">元 / 坪</div>
+      <ul class="price-includes">
+        <li>丈量 · 現況圖</li>
+        <li>平面配置圖系</li>
+        <li>3D 建模 · 實景渲染</li>
+        <li>平面施工圖系</li>
+        <li>立面施工圖系</li>
+        <li>選材選色 · 廠商報價協助</li>
+      </ul>
+      <div class="price-note">設計服務流程預計 45–60 個工作天，依討論進度及坪數調整。</div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <p style="font-size:13px;color:var(--mid);margin-bottom:1.5rem;letter-spacing:0.04em;">服務地區</p>
+    <div class="area-grid">
+      <div class="area-card">
+        <div class="area-tag">完整設計 + 監工工程</div>
+        <div class="area-name">台中 · 彰化 · 苗栗</div>
+        <div class="area-desc">提供完整設計服務加施工監工，從設計到完工一手包辦</div>
+      </div>
+      <div class="area-card">
+        <div class="area-tag">純設計服務</div>
+        <div class="area-name">全台皆可</div>
+        <div class="area-desc">其他縣市僅提供設計圖面服務，施工部分由業主自行發包</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">常見問題</h2>
+  <div class="divider"></div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">工程最低金額是多少？</div>
+      <div class="faq-a">工程施工最低金額為 80 萬元，設計費另計（一坪 $4,500 元）。如需了解詳細報價，歡迎先填寫諮詢表單，我會在收到後盡快與你聯繫。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">設計費和工程費是分開的嗎？</div>
+      <div class="faq-a">是的，設計費和工程費分開計算。設計費一坪 $4,500 元，包含從丈量到完整施工圖的全套圖面服務。工程費用則依實際工程項目另行報價，施工最低金額 80 萬元。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">只想做設計，不請你們施工可以嗎？</div>
+      <div class="faq-a">可以。台中、彰化、苗栗以外地區提供純設計服務，施工由業主自行發包。台中彰化苗栗地區也可視情況討論，歡迎諮詢。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">施工期間如何掌握進度？</div>
+      <div class="faq-a">施工期間每週上傳工地照片至 LINE，讓你即時掌握現場狀況。有任何問題訊息也會即時回覆，不用擔心找不到人。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">老屋可以接嗎？需要另外評估嗎？</div>
+      <div class="faq-a">老屋可以接，有豐富的老屋翻新、毛胚屋、透天等多種類型工程經驗。老屋因格局、管線、結構狀況差異較大，建議先填寫諮詢表單，附上基本屋況說明，我會評估後提供初步建議。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">完工後有保固嗎？</div>
+      <div class="faq-a">有，一般工程保固一年。保固期間因施工問題造成的瑕疵免費修繕。建議保留完工照片以利日後確認。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">不知道自己要什麼風格，可以找你嗎？</div>
+      <div class="faq-a">這正是我們最常遇到的開始——「我知道我想找設計師，但說不出自己真正想要的是什麼。」沒關係，設計的價值不是替你決定，而是陪你釐清。只要你願意聊聊你的生活日常，我們就可以一起找到答案。</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">CONTACT</div>
+  <h2 class="section-title">開始你的空間對話</h2>
+  <div class="divider" style="background:var(--accent);"></div>
+  <div class="contact-grid">
+    <div class="contact-text">
+      <p>如果你也在找這樣的合作關係，那麼，也許我們可以進一步聊聊。</p>
+      <div class="contact-closing">設計不只是當下的選擇，<br>而是未來生活的樣子。</div>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/xu_xu_interiordesign/" target="_blank" class="contact-link">
+          <div><span class="link-label">INSTAGRAM</span>@xu_xu_interiordesign</div>
+        </a>
+        <a href="https://www.instagram.com/xu_xu_designer/" target="_blank" class="contact-link">
+          <div><span class="link-label">INSTAGRAM · 設計師個人</span>@xu_xu_designer</div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <input type="text" placeholder="姓名">
+        <input type="tel" placeholder="聯絡電話">
+        <input type="text" placeholder="所在地區（例：台中市西屯區）">
+        <select>
+          <option value="" disabled selected>屋況類型</option>
+          <option>新成屋</option>
+          <option>毛胚屋</option>
+          <option>老屋翻新</option>
+          <option>中古屋</option>
+          <option>透天</option>
+          <option>其他</option>
+        </select>
+        <input type="text" placeholder="坪數（約）">
+        <textarea placeholder="簡單描述你的需求或問題，讓我更快了解你的狀況"></textarea>
+        <button class="submit-btn">送出諮詢</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 序續室內裝修工程有限公司</span>
+  <span>室內裝修工程管理乙級 · 台中 · 彰化 · 苗栗</span>
+</footer>
+
+</body>
+</html>

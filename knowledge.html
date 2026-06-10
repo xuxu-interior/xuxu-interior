@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>序續設計 | 工程做法知識庫</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif TC', Georgia, serif; background: var(--warm-white); color: var(--charcoal); font-size: 15px; line-height: 1.8; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(250,250,248,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.1em; font-weight: 300; }
+  .nav-logo span { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); display: block; font-family: 'Noto Serif TC', serif; }
+  .nav-back { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); }
+
+  /* LAYOUT */
+  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; padding-top: 60px; }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--cream);
+    border-right: 0.5px solid var(--border);
+    padding: 2rem 0;
+    position: sticky; top: 60px; height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .sidebar-title { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); padding: 0 1.5rem; margin-bottom: 1rem; }
+  .search-wrap { padding: 0 1.5rem 1.5rem; }
+  .search-input {
+    width: 100%; padding: 8px 12px;
+    background: var(--warm-white); border: 0.5px solid var(--border);
+    font-size: 12px; color: var(--charcoal); font-family: inherit;
+    outline: none;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--light); }
+  .cat-group { margin-bottom: 0.3rem; }
+  .cat-btn {
+    width: 100%; text-align: left;
+    padding: 0.7rem 1.5rem;
+    font-size: 13px; letter-spacing: 0.06em;
+    color: var(--mid); background: none; border: none;
+    cursor: pointer; font-family: inherit;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.15s;
+  }
+  .cat-btn:hover { color: var(--charcoal); background: rgba(42,42,40,0.04); }
+  .cat-btn.active { color: var(--accent); background: var(--accent-light); font-weight: 500; }
+  .cat-count { font-size: 10px; color: var(--light); }
+  .cat-btn.active .cat-count { color: var(--accent); }
+
+  /* MAIN */
+  .main { padding: 2.5rem 3rem; }
+  .main-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .main-cat-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.5rem; }
+  .main-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; }
+  .main-desc { font-size: 13px; color: var(--mid); margin-top: 0.5rem; line-height: 1.8; }
+
+  /* ITEMS GRID */
+  .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+  .item-card {
+    background: var(--warm-white); border: 0.5px solid var(--border);
+    cursor: pointer; transition: border-color 0.15s;
+    overflow: hidden;
+  }
+  .item-card:hover { border-color: var(--accent); }
+  .item-img {
+    aspect-ratio: 4/3; background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 13px;
+    color: var(--accent); letter-spacing: 0.1em;
+  }
+  .item-body { padding: 1rem 1.25rem; }
+  .item-tag { font-size: 10px; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.3rem; }
+  .item-name { font-size: 14px; font-weight: 500; margin-bottom: 0.3rem; }
+  .item-desc { font-size: 12px; color: var(--mid); line-height: 1.7; }
+  .item-pros-cons { display: flex; gap: 0.5rem; margin-top: 0.8rem; flex-wrap: wrap; }
+  .tag-pro { font-size: 10px; background: #EAF3DE; color: #3B6D11; padding: 2px 8px; }
+  .tag-con { font-size: 10px; background: #FCEBEB; color: #A32D2D; padding: 2px 8px; }
+
+  /* MODAL */
+  .modal-bg {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(42,42,40,0.5);
+    align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--warm-white); max-width: 640px; width: 100%;
+    max-height: 85vh; overflow-y: auto;
+    position: relative;
+  }
+  .modal-img { aspect-ratio: 16/9; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--accent); letter-spacing: 0.1em; }
+  .modal-body { padding: 2rem; }
+  .modal-cat { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.5rem; }
+  .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; margin-bottom: 1rem; }
+  .modal-desc { font-size: 13px; color: var(--mid); line-height: 2; margin-bottom: 1.5rem; }
+  .modal-section { margin-bottom: 1.5rem; }
+  .modal-section-title { font-size: 11px; letter-spacing: 0.2em; color: var(--charcoal); margin-bottom: 0.8rem; border-bottom: 0.5px solid var(--border); padding-bottom: 0.5rem; }
+  .modal-list { list-style: none; }
+  .modal-list li { font-size: 13px; padding: 0.5rem 0; border-bottom: 0.5px solid var(--border); color: var(--charcoal); display: flex; gap: 0.8rem; }
+  .modal-list li:last-child { border: none; }
+  .modal-list li::before { content: '·'; color: var(--accent); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 20px; color: var(--mid); line-height: 1;
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close:hover { color: var(--charcoal); }
+  .tip-box { background: var(--cream); padding: 1rem 1.25rem; border-left: 2px solid var(--accent); font-size: 12px; color: var(--mid); line-height: 1.8; margin-top: 1rem; }
+  .tip-box strong { color: var(--charcoal); }
+
+  /* EMPTY */
+  .empty { text-align: center; padding: 4rem; color: var(--light); font-size: 13px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; display: flex; flex-wrap: wrap; gap: 0.3rem; padding: 1rem; border-right: none; border-bottom: 0.5px solid var(--border); }
+    .sidebar-title, .search-wrap { width: 100%; }
+    .cat-btn { width: auto; padding: 0.4rem 1rem; border: 0.5px solid var(--border); }
+    .cat-btn.active { border-color: var(--accent); }
+    .main { padding: 1.5rem; }
+    .items-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>工程做法知識庫</span></div>
+  <a href="index.html" class="nav-back">← 回官網</a>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">CATEGORY</div>
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="搜尋做法..." id="searchInput" oninput="filterItems()">
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn active" onclick="filterCat('all', this)">全部 <span class="cat-count" id="count-all"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('cabinet', this)">系統櫃 <span class="cat-count" id="count-cabinet"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('light', this)">燈具 <span class="cat-count" id="count-light"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('wood', this)">木工板材 <span class="cat-count" id="count-wood"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('stone', this)">石材磁磚 <span class="cat-count" id="count-stone"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('floor', this)">木地板 <span class="cat-count" id="count-floor"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('paint', this)">油漆 <span class="cat-count" id="count-paint"></span></button>
+    </div>
+    <div class="cat-group">
+      <button class="cat-btn" onclick="filterCat('style', this)">風格介紹 <span class="cat-count" id="count-style"></span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div class="main-cat-label" id="catLabel">ALL CATEGORIES</div>
+      <div class="main-title" id="catTitle">全部做法</div>
+      <div class="main-desc" id="catDesc">序續整理的常用工程做法與材料說明，提供給業主參考使用。</div>
+    </div>
+    <div class="items-grid" id="itemsGrid"></div>
+    <div class="empty" id="emptyMsg" style="display:none">找不到相關內容</div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-img" id="modalImg">照片區域</div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const categories = {
+  all: { label: 'ALL CATEGORIES', title: '全部做法', desc: '序續整理的常用工程做法與材料說明，提供給業主參考使用。' },
+  cabinet: { label: 'CABINET', title: '系統櫃', desc: '系統櫃是現代室內裝修最常見的收納解決方案，了解門片、把手、五金的差異，幫助你做出更適合生活習慣的選擇。' },
+  light: { label: 'LIGHTING', title: '燈具', desc: '燈光是空間氛圍的靈魂。了解不同燈具類型、色溫與配置方式，讓你的家在功能與美感之間取得平衡。' },
+  wood: { label: 'WOOD PANEL', title: '木工板材', desc: '木工工程的品質關鍵在板材選用。了解各種板材的特性與適用場合，避免踩雷。' },
+  stone: { label: 'STONE & TILE', title: '石材磁磚', desc: '人造石、薄板磚、大理石各有優缺點，了解差異幫助你在預算與美感之間找到最適合的選擇。' },
+  floor: { label: 'WOOD FLOORING', title: '木地板', desc: '木地板種類多樣，實木、海島型、SPC 各有特色，了解施工方式與保養差異，選出最適合你家的地板。' },
+  paint: { label: 'PAINT', title: '油漆', desc: '油漆不只是顏色，面漆種類、工法、底漆都會影響最終效果與耐用度。' },
+  style: { label: 'INTERIOR STYLE', title: '風格介紹', desc: '不知道自己喜歡什麼風格？這裡整理了常見室內設計風格的特色與差異，幫你找到方向。' }
+};
+
+const items = [
+  // 系統櫃
+  { id:1, cat:'cabinet', tag:'系統櫃', name:'門片類型比較', desc:'無把手、條型把手、圓型把手三種常見門片做法，各有不同視覺效果與使用習慣。',
+    pros:['施工快速','好清潔'], cons:['彈性較低'],
+    detail: `<div class="modal-section"><div class="modal-section-title">三種常見門片做法</div><ul class="modal-list"><li><strong>無把手（反彈式／溝縫式）</strong>：視覺最簡潔，適合極簡、日式風格。反彈式需注意多年使用後彈簧可能鬆弛；溝縫式最耐用。</li><li><strong>條型把手</strong>：最常見，好施力，易清潔。可選鋁合金、黑鐵、不鏽鋼等材質。</li><li><strong>圓型把手</strong>：視覺較輕盈，帶有溫暖感，適合北歐、法式風格。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房建議使用條型把手或溝縫式，油汙不易卡在接縫；臥室衣櫃則可選無把手，視覺更清爽。</div>` },
+  { id:2, cat:'cabinet', tag:'系統櫃', name:'板材選用說明', desc:'系統櫃板材分為塑合板、發泡板、木心板，各有適合的使用場合。',
+    pros:['可客製尺寸'], cons:['需注意板材等級'],
+    detail: `<div class="modal-section"><div class="modal-section-title">系統板材比較</div><ul class="modal-list"><li><strong>塑合板（E1/E0）</strong>：最常用，穩定性高，防潮性一般。適合一般收納櫃、衣櫃。選 E0 等級甲醛較低。</li><li><strong>發泡板</strong>：防水防潮效果最好，適合浴室、廚房下層、陽台區域。</li><li><strong>木心板</strong>：傳統木工常用，承重力較強，但甲醛問題需注意，建議選低甲醛認證板。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>潮濕區域（廚下、浴室）務必使用發泡板，乾燥區域選 E0 塑合板即可，不需要全室使用最貴的板材。</div>` },
+  { id:3, cat:'cabinet', tag:'系統櫃', name:'鉸鍊與五金選用', desc:'鉸鍊品牌、阻尼緩衝、抽屜滑軌的差異，影響系統櫃使用的舒適度與耐用年限。',
+    pros:['品牌差異大'], cons:['便宜五金易損壞'],
+    detail: `<div class="modal-section"><div class="modal-section-title">五金重點說明</div><ul class="modal-list"><li><strong>鉸鍊品牌</strong>：Blum（奧地利）、Hettich（德國）為頂級品牌，國產品牌價格較低但耐用度有差。</li><li><strong>阻尼緩衝</strong>：關門時緩緩閉合，不會大力甩門，建議所有門片都要有，尤其廚房門片。</li><li><strong>抽屜滑軌</strong>：分側拉、底拉兩種。底拉視覺較乾淨，承重略低；側拉承重較強，適合重物收納。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>五金是系統櫃的靈魂，寧可板材選便宜一點，五金建議選 Blum 或 Hettich，長期下來更省心。</div>` },
+
+  // 燈具
+  { id:4, cat:'light', tag:'燈具', name:'崁燈類型與選用', desc:'圓形、方形、魚眼、可調角度崁燈，各有適合的空間與照明需求。',
+    pros:['視覺簡潔','選擇多'], cons:['需配合天花設計'],
+    detail: `<div class="modal-section"><div class="modal-section-title">常見崁燈類型</div><ul class="modal-list"><li><strong>固定式崁燈</strong>：光線正下方照射，適合走廊、廚房工作台等需要均勻照明的空間。</li><li><strong>可調角度崁燈（魚眼）</strong>：可旋轉照射角度，適合打亮牆面掛畫、書架，製造層次感。</li><li><strong>無邊框崁燈</strong>：與天花板齊平，視覺最簡潔，適合極簡、現代風格。</li><li><strong>方形崁燈</strong>：線條感強，適合與木作天花搭配。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>主照明建議均勻配置，每 1.5–2 坪一顆；局部重點照明（畫作、展示架）用可調角度崁燈，效果更好。</div>` },
+  { id:5, cat:'light', tag:'燈具', name:'色溫選擇指南', desc:'2700K–6500K 各種色溫的差異，以及不同空間適合的色溫建議。',
+    pros:['影響氛圍感'], cons:['混用易顯凌亂'],
+    detail: `<div class="modal-section"><div class="modal-section-title">色溫對照表</div><ul class="modal-list"><li><strong>2700K 暖黃光</strong>：溫暖放鬆感，適合臥室、客廳、餐廳，營造居家氛圍。</li><li><strong>3000K 暖白光</strong>：兼顧舒適與明亮，最萬用，全室使用不出錯。</li><li><strong>4000K 中性白光</strong>：接近自然光，適合廚房、書房、工作空間，讓人清醒專注。</li><li><strong>6500K 冷白光</strong>：最亮最白，適合浴室、更衣室，方便看清楚細節。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>同一空間盡量統一色溫。全室建議 3000K，浴室可選 4000K，臥室床頭燈可用 2700K 製造放鬆感。</div>` },
+  { id:6, cat:'light', tag:'燈具', name:'燈帶配置做法', desc:'間接照明、層板燈帶、踢腳燈帶的施工方式與注意事項。',
+    pros:['提升層次感'], cons:['需預留迴路'],
+    detail: `<div class="modal-section"><div class="modal-section-title">燈帶常見做法</div><ul class="modal-list"><li><strong>天花間接燈帶</strong>：藏在天花板燈盒內，光線往上打再反射，視覺最柔和。需預留至少 15cm 燈盒深度。</li><li><strong>層板底部燈帶</strong>：裝在展示層板下方，打亮展示物品，製造精品感。</li><li><strong>床頭背牆燈帶</strong>：藏在床頭板背後，提供柔和輔助光，取代床頭燈。</li><li><strong>踢腳燈帶</strong>：裝在踢腳板或浴室鏡櫃底部，夜間導引光，避免開大燈。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>燈帶需在水電階段就配好迴路，施工後無法補救。決定要做前請提早告知，不要等木作完工才說要加。</div>` },
+
+  // 木工板材
+  { id:7, cat:'wood', tag:'木工板材', name:'夾板 vs 木心板', desc:'夾板與木心板是木工工程最常見的兩種基材，了解差異才能做對選擇。',
+    pros:['各有適用場合'], cons:['需確認甲醛等級'],
+    detail: `<div class="modal-section"><div class="modal-section-title">兩者比較</div><ul class="modal-list"><li><strong>夾板（合板）</strong>：多層薄木片膠合，穩定性高，不易變形，承重力強。適合木作底材、地板架高、大面積貼皮工程。</li><li><strong>木心板</strong>：中間為實木條，兩面夾薄木片。鎖螺絲力強，適合門片、抽屜、框架結構。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>現代木工工程夾板使用率高，木心板多用於需要鎖釘的部位。兩者都需確認 F3、F4 級（日本標準）或 E0 等級低甲醛板材。</div>` },
+  { id:8, cat:'wood', tag:'木工板材', name:'木皮板 vs 美耐板', desc:'表面貼覆材料的選擇，影響木作成品的外觀質感與耐用度。',
+    pros:['外觀差異大'], cons:['木皮較嬌貴'],
+    detail: `<div class="modal-section"><div class="modal-section-title">表面材比較</div><ul class="modal-list"><li><strong>木皮板</strong>：真實木皮貼覆，質感自然溫潤，觸感接近實木。缺點是怕水、怕刮，需定期保養。適合臥室、客廳展示牆。</li><li><strong>美耐板（防火板）</strong>：高壓樹脂板，耐刮、耐熱、易清潔，顏色樣式多樣。適合廚房門片、書桌桌面、高使用頻率區域。</li><li><strong>鋼琴烤漆</strong>：噴漆處理，光滑反光質感，高級感強。易留指紋，修復費用高。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房、書桌優先美耐板；展示牆、電視牆可考慮木皮；鋼琴烤漆適合重點門片，不建議大面積使用。</div>` },
+
+  // 石材磁磚
+  { id:9, cat:'stone', tag:'石材磁磚', name:'人造石 vs 天然大理石', desc:'檯面材料兩大主流，了解價格、保養、質感的差異再做決定。',
+    pros:['各有優缺點'], cons:['需配合使用習慣'],
+    detail: `<div class="modal-section"><div class="modal-section-title">詳細比較</div><ul class="modal-list"><li><strong>人造石</strong>：石英砂加樹脂壓製，硬度高、抗污、不吸水，無縫接合看起來很整齊。顏色選擇多，價格相對親民。缺點是高溫（鍋具直接放）可能留痕。</li><li><strong>天然大理石</strong>：每塊紋理獨一無二，質感無可取代。缺點是毛細孔大、易吸色（咖啡、紅酒留色）、耐酸性差，需定期保養。</li><li><strong>賽麗石（人造石英石）</strong>：成分接近天然石，硬度更高，抗污性比大理石好，是廚房檯面很好的折中選擇。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房檯面推薦賽麗石或人造石；浴室台面可選大理石；中島如有展示性需求可考慮天然大理石，但需接受定期保養的習慣。</div>` },
+  { id:10, cat:'stone', tag:'石材磁磚', name:'薄板磚施工說明', desc:'薄板磚（岩板）越來越流行，了解尺寸、施工難度與適用場合。',
+    pros:['大片視覺震撼','縫隙少'], cons:['施工難度高','怕角落碰撞'],
+    detail: `<div class="modal-section"><div class="modal-section-title">薄板磚重點</div><ul class="modal-list"><li><strong>尺寸</strong>：常見 120×60、150×75、160×80cm，甚至更大。縫隙少，視覺整體感強。</li><li><strong>厚度</strong>：約 6–9mm，比一般磁磚薄，重量輕，適合牆面鋪貼與台面應用。</li><li><strong>施工難度</strong>：大尺寸磁磚施工要求較高，師傅技術很重要。需確保底材完全平整，否則容易空鼓。</li><li><strong>邊角處理</strong>：薄板磚邊角容易崩，轉角處需搭配金屬收邊條或做導角處理。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>薄板磚視覺效果好，但施工成本較高。建議用在電視牆、浴室牆面等視覺重點區域，地板則考慮抗滑性是否足夠。</div>` },
+  { id:11, cat:'stone', tag:'石材磁磚', name:'磁磚溝縫與填縫處理', desc:'填縫顏色、寬度、材料的選擇，影響磁磚完工後的整體感。',
+    pros:['影響整體視覺'], cons:['縫寬需配合磁磚'],
+    detail: `<div class="modal-section"><div class="modal-section-title">溝縫重點</div><ul class="modal-list"><li><strong>縫寬選擇</strong>：仿石材磁磚建議 2–3mm 細縫，呈現整體感；手工磚、復古磚建議 5–8mm 寬縫，更有手作質感。</li><li><strong>填縫材料</strong>：一般填縫劑便宜但易髒易變色；環氧樹脂填縫（彩色填縫）耐髒、防霉，適合廚房、浴室。</li><li><strong>顏色選擇</strong>：同色系填縫→整體感強；對比色填縫→線條感強，適合有個性的設計。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>廚房、浴室強烈建議使用環氧樹脂填縫，雖然貴一點，但不發霉、好清潔，長期下來很值得。</div>` },
+
+  // 木地板
+  { id:12, cat:'floor', tag:'木地板', name:'實木 vs 海島型 vs SPC', desc:'三種木地板的核心差異，台灣氣候下的選用建議。',
+    pros:['各有適用條件'], cons:['需考量濕度環境'],
+    detail: `<div class="modal-section"><div class="modal-section-title">三種地板比較</div><ul class="modal-list"><li><strong>實木地板</strong>：100% 天然實木，腳感最好，可多次研磨翻新。缺點是台灣氣候潮濕，實木容易漲縮變形，維護成本高。</li><li><strong>海島型木地板</strong>：表層真實木皮，底層為夾板，克服實木漲縮問題，是台灣最常見的木地板選擇。腳感好，質感佳。</li><li><strong>SPC石塑地板</strong>：完全防水，適合浴室、廁所、有寵物的家庭。硬度高，踩起來較硬，視覺上接近木地板。價格最親民。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>台灣濕熱氣候推薦海島型；有寵物或小孩、需要全室防水選 SPC；純追求質感且願意保養可選實木，但需注意通風除濕。</div>` },
+  { id:13, cat:'floor', tag:'木地板', name:'直鋪 vs 架高 vs 平鋪', desc:'木地板三種施工方式的差異與適用場合。',
+    pros:['施工方式影響費用'], cons:['架高難以局部修復'],
+    detail: `<div class="modal-section"><div class="modal-section-title">施工方式說明</div><ul class="modal-list"><li><strong>直鋪（膠黏）</strong>：地板直接用膠水黏合於地面，最穩固，不會有聲音，但日後拆除困難。適合新成屋平整地面。</li><li><strong>平鋪（卡扣）</strong>：地板以卡扣方式拼接，不用膠，可局部拆換維修。高低落差超過 3mm 需先整平。</li><li><strong>架高</strong>：在地板下方架設角料，形成高低差，可做收納或榻榻米感。費用較高，適合臥室局部設計。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>一般居家推薦平鋪（卡扣），方便日後局部修繕；老屋地面不平建議先整平再施作，省得後悔。</div>` },
+
+  // 油漆
+  { id:14, cat:'paint', tag:'油漆', name:'水泥漆 vs 乳膠漆', desc:'兩種最常見的室內牆面塗料，差異在哪裡？',
+    pros:['乳膠漆較耐用'], cons:['水泥漆價格便宜'],
+    detail: `<div class="modal-section"><div class="modal-section-title">核心差異</div><ul class="modal-list"><li><strong>水泥漆</strong>：價格便宜，施工方便，適合預算有限的空間。缺點是耐洗性差，容易掉色，不好局部修補。</li><li><strong>乳膠漆</strong>：耐磨、耐洗、附著力強，可以用濕布擦拭，適合有小孩或使用頻率高的空間。顏色更細膩，調色選擇更多。</li><li><strong>礦物塗料</strong>：天然礦物成分，透氣性佳，不易結露發霉，適合有濕氣問題的空間，價格較高。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>有小孩的家庭一定要選乳膠漆，好清潔。預算有限的出租套房可用水泥漆。全室如果要換一個顏色，費用差異其實不大，建議直接選乳膠漆。</div>` },
+  { id:15, cat:'paint', tag:'油漆', name:'面漆種類說明', desc:'平光、半光、全光三種面漆光澤度的差異與適用空間。',
+    pros:['影響視覺質感'], cons:['光面較易見瑕疵'],
+    detail: `<div class="modal-section"><div class="modal-section-title">光澤度選擇</div><ul class="modal-list"><li><strong>平光（無光澤）</strong>：最常見，牆面顯色最飽滿，不反光，視覺質感最好。缺點是不易清潔，手痕不好擦。</li><li><strong>半光（蛋殼光）</strong>：帶有輕微光澤，比平光更好清潔，適合廚房、兒童房等使用頻繁的空間。</li><li><strong>全光（亮光）</strong>：反光效果強，多用於木作門片、踢腳板、窗框，不適合大面積牆面（會顯出牆面不平整）。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>主牆建議平光或蛋殼光；木作門片建議半光或全光；浴室、廚房建議蛋殼光以上，好清潔。</div>` },
+  { id:16, cat:'paint', tag:'油漆', name:'油漆工序說明', desc:'批土、底漆、面漆的施工順序與每道工序的作用。',
+    pros:['工序完整才耐用'], cons:['省略批土易有瑕疵'],
+    detail: `<div class="modal-section"><div class="modal-section-title">標準施工工序</div><ul class="modal-list"><li><strong>第一步：批土整平</strong>：填補牆面坑洞、裂縫，確保表面平整。批土次數影響最終平整度，一般 1–2 次，高標準可達 3 次。</li><li><strong>第二步：打磨</strong>：批土乾燥後打磨，去除批土痕跡，確保表面光滑。</li><li><strong>第三步：底漆</strong>：增加面漆附著力，封閉牆面毛細孔，防止面漆不均勻。</li><li><strong>第四步：面漆（2–3道）</strong>：分多次薄塗，每道乾燥後再上下一道，確保顏色均勻飽和。</li></ul></div><div class="tip-box"><strong>序續建議：</strong>油漆工程最怕省工序。批土次數、面漆道數都影響最終品質。驗收時注意燈光斜照牆面，最容易看出是否平整。</div>` },
+
+  // 風格
+  { id:17, cat:'style', tag:'風格介紹', name:'現代簡約風', desc:'線條俐落、色調乾淨，強調空間感與功能性的設計風格。',
+    pros:['耐看','不易退流行'], cons:['容易顯得冷調'],
+    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：白色、米白、淺灰為主，避免過多顏色干擾。</li><li><strong>材質</strong>：白色烤漆、鐵件、玻璃、水泥紋、淺色木皮。</li><li><strong>收納</strong>：強調隱藏式收納，讓視覺保持乾淨。</li><li><strong>燈光</strong>：偏好嵌入式燈具，避免吊燈過多。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>現代簡約不等於「空洞」，重點在材質選用與比例拿捏。適合喜歡乾淨、好整理的生活方式。</div>` },
+  { id:18, cat:'style', tag:'風格介紹', name:'日式侘寂風', desc:'以不完美為美，強調自然材質、留白與歲月感的日式美學。',
+    pros:['靜謐有深度'], cons:['需控制整體調性'],
+    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：大地色系、米白、深褐、消光黑，帶有溫度感的中性色。</li><li><strong>材質</strong>：實木、竹、麻、手作質感磁磚、清水模、和紙。</li><li><strong>傢俱</strong>：低矮傢俱為主，接近地面的視角讓空間更沉靜。</li><li><strong>燈光</strong>：偏暖色溫（2700–3000K），避免太亮，製造靜謐感。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>侘寂風容易流於「刻意做舊」，關鍵在材質選用的真實感，而不是堆砌日式元素。適合喜歡安靜、慢生活的人。</div>` },
+  { id:19, cat:'style', tag:'風格介紹', name:'輕奢風格', desc:'在現代框架中加入奢華質感，透過材質與細節傳遞精緻感。',
+    pros:['質感提升明顯'], cons:['預算需求較高'],
+    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：深灰、霧黑、奶白、香檳金、莫蘭迪色系。</li><li><strong>材質</strong>：大理石、鏡面、金屬收邊、絨布傢俱、玻璃隔間。</li><li><strong>照明</strong>：條燈、間接燈光、金屬質感燈具，強調光影層次。</li><li><strong>收納</strong>：系統板結合鏡面或金屬把手，兼顧實用與美感。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>輕奢的核心是材質，而不是元素堆砌。一塊好的石材檯面，比十個水晶燈更有質感。</div>` },
+  { id:20, cat:'style', tag:'風格介紹', name:'北歐自然風', desc:'以人為本，強調舒適、溫暖與自然材質的北歐設計精神。',
+    pros:['溫暖舒適','適合家庭'], cons:['容易顯得平淡'],
+    detail: `<div class="modal-section"><div class="modal-section-title">風格特色</div><ul class="modal-list"><li><strong>色調</strong>：白色、淺木色、奶油色，點綴莫蘭迪綠或藍。</li><li><strong>材質</strong>：淺色原木、棉麻織品、藤編、陶器。</li><li><strong>植栽</strong>：大量綠植是北歐風的靈魂，帶入自然感。</li><li><strong>傢俱</strong>：機能性強，強調使用者舒適，多圓角設計。</li></ul></div><div class="tip-box"><strong>序續觀點：</strong>北歐風容易做到，但要做出層次需要在軟裝上用心。建議從傢俱、地毯、窗簾的材質搭配入手，而不只是顏色配色。</div>` },
+];
+
+let currentCat = 'all';
+let currentSearch = '';
+
+function renderItems() {
+  const grid = document.getElementById('itemsGrid');
+  const empty = document.getElementById('emptyMsg');
+  let filtered = items;
+  if (currentCat !== 'all') filtered = filtered.filter(i => i.cat === currentCat);
+  if (currentSearch) filtered = filtered.filter(i =>
+    i.name.includes(currentSearch) || i.desc.includes(currentSearch) || i.tag.includes(currentSearch)
+  );
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    grid.innerHTML = filtered.map(item => `
+      <div class="item-card" onclick="openModal(${item.id})">
+        <div class="item-img">照片區域</div>
+        <div class="item-body">
+          <div class="item-tag">${item.tag}</div>
+          <div class="item-name">${item.name}</div>
+          <div class="item-desc">${item.desc}</div>
+          <div class="item-pros-cons">
+            ${item.pros.map(p=>`<span class="tag-pro">✓ ${p}</span>`).join('')}
+            ${item.cons.map(c=>`<span class="tag-con">△ ${c}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  // update counts
+  document.getElementById('count-all').textContent = items.length;
+  ['cabinet','light','wood','stone','floor','paint','style'].forEach(cat => {
+    const el = document.getElementById('count-'+cat);
+    if (el) el.textContent = items.filter(i=>i.cat===cat).length;
+  });
+}
+
+function filterCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const c = categories[cat];
+  document.getElementById('catLabel').textContent = c.label;
+  document.getElementById('catTitle').textContent = c.title;
+  document.getElementById('catDesc').textContent = c.desc;
+  renderItems();
+}
+
+function filterItems() {
+  currentSearch = document.getElementById('searchInput').value.trim();
+  renderItems();
+}
+
+function openModal(id) {
+  const item = items.find(i=>i.id===id);
+  if (!item) return;
+  document.getElementById('modalCat').textContent = item.tag;
+  document.getElementById('modalTitle').textContent = item.name;
+  document.getElementById('modalDesc').textContent = item.desc;
+  document.getElementById('modalContent').innerHTML = item.detail;
+  document.getElementById('modalImg').textContent = '照片區域（' + item.name + '）';
+  document.getElementById('modalBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalBg')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modalBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalBtn(); });
+renderItems();
+</script>
+</body>
+</html>
