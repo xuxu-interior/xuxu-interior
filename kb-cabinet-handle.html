@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>系統櫃把手類型 | 序續工程做法知識庫</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Serif TC', Georgia, serif; background: var(--warm-white); color: var(--charcoal); line-height: 1.8; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(250,250,248,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.1em; font-weight: 300; }
+  .nav-logo span { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); display: block; }
+  .nav-back { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .nav-back:hover { color: var(--charcoal); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    padding: 5rem 3rem 0;
+    display: flex; gap: 0.5rem; align-items: center;
+    font-size: 12px; color: var(--light); letter-spacing: 0.08em;
+  }
+  .breadcrumb a { color: var(--mid); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--charcoal); }
+  .breadcrumb span { color: var(--light); }
+
+  /* HEADER */
+  .page-header { padding: 1.5rem 3rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+  .page-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.5rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 0.5rem; }
+  .page-desc { font-size: 13px; color: var(--mid); line-height: 1.8; max-width: 560px; }
+
+  /* HANDLES GRID */
+  .handles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 3rem;
+  }
+  .handle-card { display: flex; flex-direction: column; }
+  .handle-img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .handle-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .handle-card:hover .handle-img-wrap img { transform: scale(1.03); }
+  .handle-num { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--light); margin-bottom: 0.3rem; letter-spacing: 0.1em; }
+  .handle-name { font-size: 15px; font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+  .handle-desc { font-size: 12px; color: var(--mid); line-height: 1.8; }
+  .handle-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+  .tag { font-size: 10px; letter-spacing: 0.08em; padding: 3px 10px; background: var(--accent-light); color: var(--accent); }
+
+  /* NOTES */
+  .notes-section { padding: 0 3rem 4rem; }
+  .notes-title { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 1.5rem; }
+  .notes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .note-card { background: var(--cream); padding: 1.5rem; border-left: 2px solid var(--accent); }
+  .note-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 0.5rem; }
+  .note-card p { font-size: 12px; color: var(--mid); line-height: 1.8; }
+
+  /* LIGHTBOX */
+  #lightbox { display:none; position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; cursor:zoom-out; }
+  #lightboxImg { max-width:80vw; max-height:90vh; object-fit:contain; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .breadcrumb { padding: 4.5rem 1.5rem 0; }
+    .page-header { padding: 1.5rem 1.5rem 2rem; }
+    .handles-grid { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; gap: 1rem; }
+    .notes-section { padding: 0 1.5rem 3rem; }
+    .notes-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>工程做法知識庫</span></div>
+  <a href="knowledge.html" class="nav-back">← 回知識庫</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="knowledge.html">知識庫</a>
+  <span>›</span>
+  <a href="knowledge.html">系統櫃</a>
+  <span>›</span>
+  <span style="color:var(--charcoal);">把手類型</span>
+</div>
+
+<div class="page-header">
+  <div class="page-label">CABINET · HANDLE TYPE</div>
+  <div class="page-title">系統櫃把手類型</div>
+  <div class="page-desc">把手影響的不只是開關手感，更決定了空間的整體視覺調性。了解四種常見把手做法，找到最適合你家的選擇。</div>
+</div>
+
+<div class="handles-grid">
+
+  <div class="handle-card">
+    <div class="handle-img-wrap" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-01.jpg')" style="cursor:zoom-in;">
+      <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-01.jpg" alt="系統櫃隱藏把手">
+    </div>
+    <div class="handle-num">— 01</div>
+    <div class="handle-name">隱藏把手</div>
+    <div class="handle-desc">把手藏於門片側邊溝縫內，視覺最為簡潔，整體感強。</div>
+    <div class="handle-tags">
+      <span class="tag">視覺簡潔</span>
+      <span class="tag">極簡風</span>
+    </div>
+  </div>
+
+  <div class="handle-card">
+    <div class="handle-img-wrap" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-02.jpg')" style="cursor:zoom-in;">
+      <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-02.jpg" alt="一字外鎖把手">
+    </div>
+    <div class="handle-num">— 02</div>
+    <div class="handle-name">一字外鎖把手</div>
+    <div class="handle-desc">細長條型把手固定於門片外側，線條感強、好施力。</div>
+    <div class="handle-tags">
+      <span class="tag">最常見</span>
+      <span class="tag">好施力</span>
+      <span class="tag">百搭</span>
+    </div>
+  </div>
+
+  <div class="handle-card">
+    <div class="handle-img-wrap" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-03.jpg')" style="cursor:zoom-in;">
+      <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-03.jpg" alt="45度斜把手">
+    </div>
+    <div class="handle-num">— 03</div>
+    <div class="handle-name">45度斜把手</div>
+    <div class="handle-desc">門片頂端或側邊裁切45度斜角作為把手，無需額外配件，造型俐落。</div>
+    <div class="handle-tags">
+      <span class="tag">無配件</span>
+      <span class="tag">造型俐落</span>
+    </div>
+  </div>
+
+  <div class="handle-card">
+    <div class="handle-img-wrap" onclick="openLightbox('https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-04.jpg')" style="cursor:zoom-in;">
+      <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/handle-04.jpg" alt="單顆型把手">
+    </div>
+    <div class="handle-num">— 04</div>
+    <div class="handle-name">單顆型把手</div>
+    <div class="handle-desc">圓形或方形單顆把手，造型輕盈帶有溫度感，可選金屬、陶瓷等不同材質。</div>
+    <div class="handle-tags">
+      <span class="tag">輕盈溫暖</span>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out;">
+  <img id="lightboxImg" style="max-width:80vw;max-height:90vh;object-fit:contain;" src="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>
