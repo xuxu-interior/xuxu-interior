@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>木地板差異比較 | 序續工程做法知識庫</title>
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAFAF8;
+    --charcoal: #2A2A28;
+    --mid: #6B6A66;
+    --light: #B0AFA9;
+    --accent: #8B7355;
+    --accent-light: #E8E0D4;
+    --border: rgba(42,42,40,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif TC', Georgia, serif; background: var(--warm-white); color: var(--charcoal); line-height: 1.8; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300&display=swap');
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(250,250,248,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.1em; font-weight: 300; }
+  .nav-logo span { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); display: block; }
+  .nav-back { font-size: 12px; letter-spacing: 0.1em; color: var(--mid); transition: color 0.2s; }
+  .nav-back:hover { color: var(--charcoal); }
+
+  .breadcrumb {
+    padding: 5rem 3rem 0;
+    display: flex; gap: 0.5rem; align-items: center;
+    font-size: 12px; color: var(--light); letter-spacing: 0.08em;
+  }
+  .breadcrumb a { color: var(--mid); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--charcoal); }
+
+  .page-header { padding: 1.5rem 3rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+  .page-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.5rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 0.5rem; }
+  .page-desc { font-size: 13px; color: var(--mid); line-height: 1.8; }
+
+  /* CARDS */
+  .cards-wrap { padding: 2.5rem 3rem; }
+  .cards-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 3rem; }
+  .floor-card {
+    background: var(--cream);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border: 0.5px solid var(--border);
+    border-top: 2px solid var(--accent);
+  }
+  .floor-icon { margin-bottom: 0.8rem; }
+  .floor-name { font-size: 14px; font-weight: 500; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+  .floor-en { font-size: 10px; letter-spacing: 0.1em; color: var(--light); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 1rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 540px; }
+  thead tr { background: var(--charcoal); color: var(--warm-white); }
+  thead th { padding: 1rem 0.8rem; text-align: center; font-weight: 400; letter-spacing: 0.08em; font-size: 13px; }
+  thead th:first-child { text-align: left; }
+  tbody tr { border-bottom: 0.5px solid var(--border); }
+  tbody tr:nth-child(even) { background: var(--cream); }
+  tbody td { padding: 1rem 0.8rem; text-align: center; color: var(--mid); vertical-align: middle; font-size: 13px; }
+  tbody td:first-child { text-align: left; font-weight: 500; color: var(--charcoal); font-size: 13px; letter-spacing: 0.05em; white-space: nowrap; }
+  .dot-wrap { display: flex; justify-content: center; gap: 3px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .dot.empty { background: var(--accent-light); }
+  .tag-good { font-size: 11px; background: #EAF3DE; color: #3B6D11; padding: 3px 8px; display: inline-block; }
+  .tag-mid { font-size: 11px; background: var(--accent-light); color: var(--accent); padding: 3px 8px; display: inline-block; }
+  .tag-bad { font-size: 11px; background: #FCEBEB; color: #A32D2D; padding: 3px 8px; display: inline-block; }
+
+  .note-wrap { padding: 0 3rem 4rem; }
+  .note-box { background: var(--cream); border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; font-size: 13px; color: var(--mid); line-height: 2; }
+  .note-box strong { color: var(--charcoal); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .breadcrumb { padding: 4.5rem 1.5rem 0; }
+    .page-header { padding: 1.5rem 1.5rem 2rem; }
+    .cards-wrap { padding: 2rem 1.5rem; }
+    .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+    .note-wrap { padding: 0 1.5rem 3rem; }
+    table { font-size: 13px; min-width: 480px; }
+    thead th { font-size: 12px; padding: 0.8rem 0.6rem; }
+    tbody td { font-size: 12px; padding: 0.8rem 0.6rem; }
+    tbody td:first-child { font-size: 12px; }
+    .tag-good, .tag-mid, .tag-bad { font-size: 10px; padding: 2px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">序續室內裝修工程<span>工程做法知識庫</span></div>
+  <a href="knowledge.html" class="nav-back">← 回知識庫</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="knowledge.html">知識庫</a>
+  <span>›</span>
+  <a href="knowledge.html">木地板</a>
+  <span>›</span>
+  <span style="color:var(--charcoal);">種類差異比較</span>
+</div>
+
+<div class="page-header">
+  <div class="page-label">WOOD FLOORING · COMPARISON</div>
+  <div class="page-title">木地板種類比較</div>
+  <div class="page-desc">五種常見木地板，一張表格看懂差異。</div>
+</div>
+
+<div class="cards-wrap">
+  <!-- 五種地板卡片 -->
+  <div class="cards-grid">
+    <div class="floor-card">
+      <div class="floor-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="20" width="40" height="8" rx="1" fill="#D3D1C7"/>
+          <rect x="4" y="28" width="40" height="8" rx="1" fill="#B4B2A9"/>
+          <rect x="4" y="12" width="40" height="8" rx="1" fill="#E8E0D4"/>
+          <rect x="4" y="36" width="18" height="6" rx="1" fill="#D3D1C7"/>
+          <rect x="26" y="36" width="18" height="6" rx="1" fill="#B4B2A9"/>
+        </svg>
+      </div>
+      <div class="floor-name">超耐磨</div>
+      <div class="floor-en">LAMINATE</div>
+    </div>
+    <div class="floor-card">
+      <div class="floor-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="18" width="40" height="10" rx="1" fill="#888780"/>
+          <rect x="4" y="28" width="40" height="4" rx="1" fill="#5F5E5A"/>
+          <rect x="4" y="32" width="40" height="4" rx="1" fill="#444441"/>
+          <rect x="4" y="14" width="40" height="4" rx="1" fill="#B4B2A9"/>
+          <text x="24" y="23" text-anchor="middle" font-size="7" fill="white" font-family="sans-serif">石塑</text>
+        </svg>
+      </div>
+      <div class="floor-name">SPC</div>
+      <div class="floor-en">STONE PLASTIC</div>
+    </div>
+    <div class="floor-card">
+      <div class="floor-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="16" width="40" height="18" rx="1" fill="#BA7517"/>
+          <rect x="4" y="16" width="40" height="4" rx="1" fill="#EF9F27"/>
+          <line x1="12" y1="16" x2="12" y2="34" stroke="#854F0B" stroke-width="0.8"/>
+          <line x1="24" y1="16" x2="24" y2="34" stroke="#854F0B" stroke-width="0.8"/>
+          <line x1="36" y1="16" x2="36" y2="34" stroke="#854F0B" stroke-width="0.8"/>
+          <rect x="4" y="34" width="40" height="4" rx="1" fill="#633806"/>
+        </svg>
+      </div>
+      <div class="floor-name">實木</div>
+      <div class="floor-en">SOLID WOOD</div>
+    </div>
+    <div class="floor-card">
+      <div class="floor-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="16" width="40" height="5" rx="1" fill="#EF9F27"/>
+          <rect x="4" y="21" width="40" height="4" rx="1" fill="#D3D1C7"/>
+          <rect x="4" y="25" width="40" height="4" rx="1" fill="#B4B2A9"/>
+          <rect x="4" y="29" width="40" height="4" rx="1" fill="#D3D1C7"/>
+          <rect x="4" y="33" width="40" height="3" rx="1" fill="#888780"/>
+          <line x1="16" y1="16" x2="16" y2="36" stroke="#BA7517" stroke-width="0.8"/>
+          <line x1="32" y1="16" x2="32" y2="36" stroke="#BA7517" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="floor-name">海島型</div>
+      <div class="floor-en">ENGINEERED</div>
+    </div>
+    <div class="floor-card">
+      <div class="floor-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <!-- 人字拼圖案 -->
+          <rect x="8" y="16" width="14" height="6" rx="0.5" fill="#EF9F27" transform="rotate(45 15 19)"/>
+          <rect x="22" y="16" width="14" height="6" rx="0.5" fill="#BA7517" transform="rotate(-45 29 19)"/>
+          <rect x="8" y="28" width="14" height="6" rx="0.5" fill="#BA7517" transform="rotate(45 15 31)"/>
+          <rect x="22" y="28" width="14" height="6" rx="0.5" fill="#EF9F27" transform="rotate(-45 29 31)"/>
+        </svg>
+      </div>
+      <div class="floor-name">人字拼</div>
+      <div class="floor-en">HERRINGBONE</div>
+    </div>
+  </div>
+
+  <!-- 比較表格 -->
+  <div class="table-label">COMPARISON TABLE · 差異比較</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:120px;">比較項目</th>
+          <th>超耐磨</th>
+          <th>SPC</th>
+          <th>實木</th>
+          <th>海島型</th>
+          <th>人字拼</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>價格</td>
+          <td><span class="tag-good">低</span></td>
+          <td><span class="tag-good">低～中</span></td>
+          <td><span class="tag-bad">高</span></td>
+          <td><span class="tag-mid">中</span></td>
+          <td><span class="tag-mid">中～高</span></td>
+        </tr>
+        <tr>
+          <td>防水性</td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-good">優</span></td>
+          <td><span class="tag-bad">差</span></td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-mid">依材質</span></td>
+        </tr>
+        <tr>
+          <td>耐刮性</td>
+          <td><span class="tag-good">優</span></td>
+          <td><span class="tag-good">優</span></td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-mid">普通</span></td>
+        </tr>
+        <tr>
+          <td>腳感舒適度</td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-bad">偏硬</span></td>
+          <td><span class="tag-good">最佳</span></td>
+          <td><span class="tag-good">佳</span></td>
+          <td><span class="tag-good">佳</span></td>
+        </tr>
+        <tr>
+          <td>台灣氣候穩定性</td>
+          <td><span class="tag-good">佳</span></td>
+          <td><span class="tag-good">最佳</span></td>
+          <td><span class="tag-bad">易漲縮</span></td>
+          <td><span class="tag-good">佳</span></td>
+          <td><span class="tag-mid">依材質</span></td>
+        </tr>
+        <tr>
+          <td>質感外觀</td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-mid">普通</span></td>
+          <td><span class="tag-good">最自然</span></td>
+          <td><span class="tag-good">佳</span></td>
+          <td><span class="tag-good">高質感</span></td>
+        </tr>
+        <tr>
+          <td>施工方式</td>
+          <td>卡扣</td>
+          <td>卡扣</td>
+          <td>直鋪／釘</td>
+          <td>卡扣／膠黏</td>
+          <td>膠黏</td>
+        </tr>
+        <tr>
+          <td>適合空間</td>
+          <td>出租／兒童房</td>
+          <td>全室／浴室外</td>
+          <td>臥室</td>
+          <td>全室</td>
+          <td>玄關／客廳</td>
+        </tr>
+        <tr>
+          <td>可翻新研磨</td>
+          <td><span class="tag-bad">不可</span></td>
+          <td><span class="tag-bad">不可</span></td>
+          <td><span class="tag-good">可多次</span></td>
+          <td><span class="tag-mid">可一次</span></td>
+          <td><span class="tag-mid">依材質</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="note-wrap">
+  <div class="note-box">
+    <strong>序續小提醒：</strong>人字拼不是一種地板材質，而是一種<strong>鋪設方式</strong>，超耐磨、海島型、實木都可以做人字拼，但施工費用較高、損料也多，預算需抓寬一些。
+  </div>
+</div>
+
+</body>
+</html>
