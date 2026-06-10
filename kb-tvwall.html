@@ -44,10 +44,10 @@
   .method-tag { font-size: 11px; letter-spacing: 0.1em; color: var(--accent); background: var(--accent-light); padding: 3px 10px; }
 
   .photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-  .photo-wrap { position: relative; }
+  .photo-wrap { position: relative; overflow: hidden; }
   .photo-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; cursor: zoom-in; transition: opacity 0.2s; }
   .photo-wrap img:hover { opacity: 0.9; }
-  .photo-logo { position: absolute; bottom: 8px; right: 8px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.12em; color: rgba(250,250,248,0.75); text-shadow: 0 1px 3px rgba(0,0,0,0.4); pointer-events: none; }
+  .photo-logo { position: absolute; bottom: 8px; right: 10px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.12em; color: rgba(250,250,248,0.85); text-shadow: 0 1px 4px rgba(0,0,0,0.6); pointer-events: none; z-index: 2; }
   .photo-caption { font-size: 11px; letter-spacing: 0.08em; color: var(--light); margin-top: 0.4rem; }
 
   .method-desc { font-size: 14px; color: var(--mid); line-height: 2; margin-bottom: 1rem; }
@@ -101,17 +101,17 @@
     <div class="photo-row">
       <div class="photo-wrap">
         <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-01.jpg" alt="木作骨架" onclick="openLightbox(this.src)">
-        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-logo">XU 序續</div>
         <div class="photo-caption">木作骨架施工中</div>
       </div>
       <div class="photo-wrap">
         <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-02.jpg" alt="封板完成" onclick="openLightbox(this.src)">
-        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-logo">XU 序續</div>
         <div class="photo-caption">木作封板完成</div>
       </div>
       <div class="photo-wrap">
         <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-03.jpg" alt="完工實景" onclick="openLightbox(this.src)">
-        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-logo">XU 序續</div>
         <div class="photo-caption">完工實景</div>
       </div>
     </div>
@@ -131,12 +131,12 @@
     <div class="photo-row">
       <div class="photo-wrap">
         <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-04.jpg" alt="骨架施工" onclick="openLightbox(this.src)">
-        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-logo">XU 序續</div>
         <div class="photo-caption">木作骨架與貓道預留</div>
       </div>
       <div class="photo-wrap">
         <img src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/tv-wall-05.jpg" alt="封板完成" onclick="openLightbox(this.src)">
-        <div class="photo-logo">XU² 序續室內設計</div>
+        <div class="photo-logo">XU 序續</div>
         <div class="photo-caption">封板完成，預留出線孔</div>
       </div>
     </div>

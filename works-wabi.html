@@ -64,12 +64,12 @@
   .gallery-title { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 2rem; }
   .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .gallery-grid .full { grid-column: 1 / -1; }
-  .photo-wrap { position: relative; }
+  .photo-wrap { position: relative; overflow: hidden; }
   .gallery-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; cursor: zoom-in; transition: opacity 0.2s; display: block; }
   .gallery-img:hover { opacity: 0.9; }
   .gallery-img.tall { aspect-ratio: 4/3; }
   .gallery-img.portrait { aspect-ratio: 3/4; }
-  .photo-logo { position: absolute; bottom: 12px; right: 12px; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; color: rgba(250,250,248,0.75); font-weight: 300; text-shadow: 0 1px 3px rgba(0,0,0,0.4); pointer-events: none; }
+  .photo-logo { position: absolute; bottom: 8px; right: 10px; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; color: rgba(250,250,248,0.75); font-weight: 300; text-shadow: 0 1px 3px rgba(0,0,0,0.4); pointer-events: none; }
   .img-caption { font-size: 11px; letter-spacing: 0.1em; color: var(--light); margin-top: 0.5rem; margin-bottom: 1.5rem; }
 
   .project-nav { padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); }
@@ -102,7 +102,7 @@
     <div class="hero-sub">侘寂美學 · 木格柵 · 榻榻米 · 光影之間</div>
   </div>
   <div class="logo-watermark">
-    <div class="logo-text">XU² 序續室內設計</div>
+    <div class="logo-text">XU 序續</div>
   </div>
 </div>
 
@@ -127,28 +127,28 @@
   <div class="gallery-grid">
     <div class="photo-wrap full">
       <img class="gallery-img" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-02.jpg" alt="茶室全景" onclick="openLightbox(this.src)">
-      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-logo">XU 序續</div>
     </div>
     <div class="img-caption full">茶室 · 整體空間配置 · 木格柵天花與竹簾</div>
 
     <div class="photo-wrap">
       <img class="gallery-img tall" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-03.jpg" alt="茶室角度二" onclick="openLightbox(this.src)">
-      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-logo">XU 序續</div>
     </div>
     <div class="photo-wrap">
       <img class="gallery-img tall" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-04.jpg" alt="茶室角度三" onclick="openLightbox(this.src)">
-      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-logo">XU 序續</div>
     </div>
     <div class="img-caption">障子格窗 · 竹簾光影</div>
     <div class="img-caption">木格柵主牆 · 茶席配置</div>
 
     <div class="photo-wrap">
       <img class="gallery-img tall" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-01.jpg" alt="茶室全景二" onclick="openLightbox(this.src)">
-      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-logo">XU 序續</div>
     </div>
     <div class="photo-wrap">
       <img class="gallery-img tall" src="https://raw.githubusercontent.com/xuxu-interior/xuxu-interior/main/wabi-05.jpg" alt="衛浴空間" onclick="openLightbox(this.src)">
-      <div class="photo-logo">XU² 序續室內設計</div>
+      <div class="photo-logo">XU 序續</div>
     </div>
     <div class="img-caption">茶室 · 整體光影氛圍</div>
     <div class="img-caption">衛浴 · 日式立柱臉盆 · 深色磁磚</div>
