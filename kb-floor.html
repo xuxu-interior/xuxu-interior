@@ -63,20 +63,20 @@
   /* TABLE */
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .table-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 1rem; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 540px; }
+  table { width: auto; border-collapse: collapse; font-size: 13px; }
   thead tr { background: var(--charcoal); color: var(--warm-white); }
-  thead th { padding: 1rem 0.8rem; text-align: center; font-weight: 400; letter-spacing: 0.08em; font-size: 13px; }
-  thead th:first-child { text-align: left; }
+  thead th { padding: 0.8rem 0.7rem; text-align: center; font-weight: 400; letter-spacing: 0.06em; font-size: 12px; white-space: nowrap; }
+  thead th:first-child { text-align: left; min-width: 90px; }
   tbody tr { border-bottom: 0.5px solid var(--border); }
   tbody tr:nth-child(even) { background: var(--cream); }
-  tbody td { padding: 1rem 0.8rem; text-align: center; color: var(--mid); vertical-align: middle; font-size: 13px; }
-  tbody td:first-child { text-align: left; font-weight: 500; color: var(--charcoal); font-size: 13px; letter-spacing: 0.05em; white-space: nowrap; }
+  tbody td { padding: 0.75rem 0.7rem; text-align: center; color: var(--mid); vertical-align: middle; font-size: 12px; white-space: nowrap; }
+  tbody td:first-child { text-align: left; font-weight: 500; color: var(--charcoal); font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
   .dot-wrap { display: flex; justify-content: center; gap: 3px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
   .dot.empty { background: var(--accent-light); }
-  .tag-good { font-size: 11px; background: #EAF3DE; color: #3B6D11; padding: 3px 8px; display: inline-block; }
-  .tag-mid { font-size: 11px; background: var(--accent-light); color: var(--accent); padding: 3px 8px; display: inline-block; }
-  .tag-bad { font-size: 11px; background: #FCEBEB; color: #A32D2D; padding: 3px 8px; display: inline-block; }
+  .tag-good { font-size: 11px; background: #EAF3DE; color: #3B6D11; padding: 2px 8px; display: inline-block; white-space: nowrap; }
+  .tag-mid { font-size: 11px; background: var(--accent-light); color: var(--accent); padding: 2px 8px; display: inline-block; white-space: nowrap; }
+  .tag-bad { font-size: 11px; background: #FCEBEB; color: #A32D2D; padding: 2px 8px; display: inline-block; white-space: nowrap; }
 
   .note-wrap { padding: 0 3rem 4rem; }
   .note-box { background: var(--cream); border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; font-size: 13px; color: var(--mid); line-height: 2; }
